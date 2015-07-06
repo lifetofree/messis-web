@@ -59,7 +59,6 @@ public partial class WebSystem_Material_MaterialRecord : System.Web.UI.Page
         switch (cmdName)
         {
             case "cmdInsert":
-
                 break;
             case "cmdEdit":
                 gvMaterialRecList.Visible = false;

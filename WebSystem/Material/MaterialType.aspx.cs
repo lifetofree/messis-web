@@ -138,6 +138,7 @@ public partial class WebSystem_Material_MaterialType : System.Web.UI.Page
                         kindList.KIDX = int.Parse(((Label)fvTypeList.FindControl("lblTypeIDXE")).Text);
                         kindList.KName = ((TextBox)fvTypeList.FindControl("tbName")).Text.Trim();
                         kindList.KDesc = ((TextBox)fvTypeList.FindControl("tbDesc")).Text.Trim();
+                        kindList.KStatus = int.Parse(((DropDownList)fvTypeList.FindControl("ddlStatusE")).SelectedValue);
 
                         dataMaster.KindList = new DetailKindList[1];
                         dataMaster.KindList[0] = kindList;
@@ -147,13 +148,14 @@ public partial class WebSystem_Material_MaterialType : System.Web.UI.Page
                         assetList.AsIDX = int.Parse(((Label)fvTypeList.FindControl("lblTypeIDXE")).Text); ;
                         assetList.AsName = ((TextBox)fvTypeList.FindControl("tbName")).Text.Trim();
                         assetList.AsDesc = ((TextBox)fvTypeList.FindControl("tbDesc")).Text.Trim();
+                        assetList.AsStatus = int.Parse(((DropDownList)fvTypeList.FindControl("ddlStatusE")).SelectedValue);
 
                         dataMaster.AssetList = new DetailAssetList[1];
                         dataMaster.AssetList[0] = assetList;
                         break;
                 }
 
-                actionType = int.Parse("1" + ((DropDownList)fvTypeList.FindControl("ddlTypeStatusE")).SelectedValue);
+                actionType = int.Parse("1" + ((DropDownList)fvTypeList.FindControl("ddlStatusE")).SelectedValue);
                 //litTest.Text = HttpUtility.HtmlDecode(funcWeb.ConvertObjectToXml(dataMaster));
 
                 //execute data
@@ -263,9 +265,18 @@ public partial class WebSystem_Material_MaterialType : System.Web.UI.Page
                 switch (matType)
                 {
                     case "kind":
-                        ddlStatusE.SelectedValue = "0";
+                        DetailKindList[] tmpK = (DetailKindList[])obj;
+                        lblTypeIDXE.Text = tmpK[0].KIDX.ToString();
+                        tbName.Text = tmpK[0].KName;
+                        tbDesc.Text = tmpK[0].KDesc;
+                        ddlStatusE.SelectedValue = tmpK[0].KStatus.ToString();
                         break;
                     case "asset":
+                        DetailAssetList[] tmpA = (DetailAssetList[])obj;
+                        lblTypeIDXE.Text = tmpA[0].AsIDX.ToString();
+                        tbName.Text = tmpA[0].AsName;
+                        tbDesc.Text = tmpA[0].AsDesc;
+                        ddlStatusE.SelectedValue = tmpA[0].AsStatus.ToString();
                         break;
                 }
                 break;

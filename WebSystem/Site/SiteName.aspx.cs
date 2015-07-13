@@ -21,6 +21,7 @@ public partial class WebSystem_Site_SiteName : System.Web.UI.Page
         if (!IsPostBack)
         {
             getGridData("site", dataMaster, 20);
+            fvSiteList.Visible = false;
         }
     }
 
@@ -36,6 +37,10 @@ public partial class WebSystem_Site_SiteName : System.Web.UI.Page
                 
                 break;
             case "cmdEdit":
+                fvSiteList.Visible = true;
+                lbAddSite.Visible = false;
+                gvSiteList.Visible = !gvSiteList.Visible;
+
                 DetailSiteList siteDetail = new DetailSiteList();
                 siteDetail.SiteIDX = int.Parse(cmdArg);
                 dataMaster.SiteList = new DetailSiteList[1];
@@ -62,6 +67,7 @@ public partial class WebSystem_Site_SiteName : System.Web.UI.Page
         gvName.PageIndex = e.NewPageIndex;
         getGridData("site", dataMaster, 20);
         setFormData(fvSiteList, FormViewMode.Insert, null);
+        fvSiteList.Visible = false;
     }
     #endregion grid command
 
@@ -153,8 +159,29 @@ public partial class WebSystem_Site_SiteName : System.Web.UI.Page
                 setFormData(fvSiteList, FormViewMode.Insert, null);
                 break;
         }
+
+        fvSiteList.Visible = !fvSiteList.Visible;
+        lbAddSite.Visible = !lbAddSite.Visible;
+        gvSiteList.Visible = !gvSiteList.Visible;
     }
     #endregion form commnd
+
+    #region btn command
+    protected void btnCommand(object sender, CommandEventArgs e)
+    {
+        string cmdName = e.CommandName.ToString();
+        string cmdArg = e.CommandArgument.ToString();
+
+        switch (cmdName)
+        {
+            case "cmdAddSite":
+                fvSiteList.Visible = true;
+                lbAddSite.Visible = false;
+                gvSiteList.Visible = !gvSiteList.Visible;
+                break;
+        }
+    }
+    #endregion btn command
 
     #region bind data
     protected void getGridData(string dataName, DataMaster dataMaster, int actionType)

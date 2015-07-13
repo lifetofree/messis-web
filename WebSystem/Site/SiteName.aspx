@@ -6,6 +6,10 @@
 <asp:Content ID="SiteNameContent" ContentPlaceHolderID="ContentMain" runat="Server">
     <script src='<%=ResolveUrl("~/Scripts/bootstrap-datepicker.js")%>'></script>
 
+    <div class="form-group">
+        <asp:LinkButton ID="lbAddSite" CssClass="btn btn-primary" runat="server" data-original-title="เพิ่มรายการ" data-toggle="tooltip" OnCommand="btnCommand" CommandName="cmdAddSite"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></asp:LinkButton>
+    </div>
+
     <asp:GridView ID="gvSiteList" runat="server" CssClass="table table-bordered" AutoGenerateColumns="false" AllowPaging="true" PageSize="10" OnPageIndexChanging="gvPageIndexChanging" OnRowCommand="gvRowCommand">
         <%-- table-striped table-hover--%>
         <HeaderStyle CssClass="info" />
@@ -65,7 +69,7 @@
             </asp:TemplateField>
         </Columns>
     </asp:GridView>
-    <hr class="divider" />
+    <%--<hr class="divider" />--%>
     <asp:Literal ID="litTest" runat="server" Mode="Encode" Visible="true" />
     <asp:FormView ID="fvSiteList" runat="server" DefaultMode="Insert" CssClass="table table-borderless" DataKeyNames="SiteIDX">
         <InsertItemTemplate>
@@ -109,8 +113,8 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <asp:LinkButton ID="lbInsert" CssClass="btn btn-success" runat="server" data-original-title="บันทึก" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdInsert" CommandArgument="0" Text="บันทึก" ValidationGroup="fromInsert" />
-                        <asp:LinkButton ID="lbCancel" CssClass="btn btn-danger" runat="server" data-original-title="ยกเลิก" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdReset" Text="ยกเลิก" ValidationGroup="fromInsert" />
+                        <asp:LinkButton ID="lbInsert" CssClass="btn btn-success" runat="server" data-original-title="บันทึก" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdInsert" CommandArgument="0" Text="บันทึก" ValidationGroup="fromInsert"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></asp:LinkButton>
+                        <asp:LinkButton ID="lbCancel" CssClass="btn btn-danger" runat="server" data-original-title="ยกเลิก" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdReset" Text="ยกเลิก" ValidationGroup="fromInsert"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></asp:LinkButton>
                     </div>
                 </div>
             </div>
@@ -168,8 +172,8 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <asp:LinkButton ID="lbUpdate" CssClass="btn btn-success" runat="server" data-original-title="บันทึก" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdUpdate" Text="บันทึก" ValidationGroup="fromEdit" />
-                        <asp:LinkButton ID="lbCancel" CssClass="btn btn-danger" runat="server" data-original-title="ยกเลิก" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdCancel" Text="ยกเลิก" ValidationGroup="fromEdit" />
+                        <asp:LinkButton ID="lbInsert" CssClass="btn btn-success" runat="server" data-original-title="บันทึก" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdUpdate" CommandArgument="0" Text="บันทึก" ValidationGroup="fromEdit"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></asp:LinkButton>
+                        <asp:LinkButton ID="lbCancel" CssClass="btn btn-danger" runat="server" data-original-title="ยกเลิก" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdCancel" Text="ยกเลิก" ValidationGroup="fromEdit"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></asp:LinkButton>
                     </div>
                 </div>
             </div>

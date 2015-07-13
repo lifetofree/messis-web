@@ -28,6 +28,7 @@ public partial class WebSystem_Material_MaterialRegister : System.Web.UI.Page
         {
             getGridData("materialreg", dataMaster, 20);
             setFormData(fvMaterialRegList, FormViewMode.Insert, null);
+            fvMaterialRegList.Visible = false;
         }
     }
 
@@ -43,6 +44,10 @@ public partial class WebSystem_Material_MaterialRegister : System.Web.UI.Page
 
                 break;
             case "cmdEdit":
+                fvMaterialRegList.Visible = true;
+                lbAddMatReg.Visible = false;
+                gvMaterialRegList.Visible = !gvMaterialRegList.Visible;
+
                 DetailMaterialRegisterList matRegister = new DetailMaterialRegisterList();
                 matRegister.RegIDX = int.Parse(cmdArg);
                 dataMaster.MaterialRegisterList = new DetailMaterialRegisterList[1];
@@ -224,6 +229,10 @@ public partial class WebSystem_Material_MaterialRegister : System.Web.UI.Page
                 setFormData(fvMaterialRegList, FormViewMode.Insert, null);
                 break;
         }
+
+        fvMaterialRegList.Visible = !fvMaterialRegList.Visible;
+        lbAddMatReg.Visible = !lbAddMatReg.Visible;
+        gvMaterialRegList.Visible = !gvMaterialRegList.Visible;
     }
 
     protected void ddlMCode_SelectedIndexChanged(object sender, EventArgs e)
@@ -278,6 +287,23 @@ public partial class WebSystem_Material_MaterialRegister : System.Web.UI.Page
         }
     }
     #endregion form command
+
+    #region btn command
+    protected void btnCommand(object sender, CommandEventArgs e)
+    {
+        string cmdName = e.CommandName.ToString();
+        string cmdArg = e.CommandArgument.ToString();
+
+        switch (cmdName)
+        {
+            case "cmdAddMatReg":
+                fvMaterialRegList.Visible = true;
+                lbAddMatReg.Visible = false;
+                gvMaterialRegList.Visible = !gvMaterialRegList.Visible;
+                break;
+        }
+    }
+    #endregion btn command
 
     #region bind data
     protected void getGridData(string dataName, DataMaster dataMaster, int actionType)

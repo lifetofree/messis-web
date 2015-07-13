@@ -126,7 +126,7 @@
     </asp:GridView>
     <%--<hr class="divider" />--%>
     <asp:Literal ID="litTest" runat="server" Mode="Encode" Visible="true" />
-    <asp:FormView ID="fvMaterialRecList" runat="server" DefaultMode="Insert" Width="100%" DataKeyNames="RecIDX">
+    <asp:FormView ID="fvMaterialRecList" runat="server" DefaultMode="Insert" CssClass="table table-borderless" DataKeyNames="RecIDX">
         <InsertItemTemplate>
             <div class="form-horizontal" role="form">
                 <div class="form-group">

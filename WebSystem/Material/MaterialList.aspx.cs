@@ -22,6 +22,7 @@ public partial class WebSystem_Material_MaterialList : System.Web.UI.Page
         {
             getGridData("materiallist", dataMaster, 20);
             setFormData(fvMaterialList, FormViewMode.Insert, null);
+            fvMaterialList.Visible = false;
         }
     }
 
@@ -37,6 +38,10 @@ public partial class WebSystem_Material_MaterialList : System.Web.UI.Page
 
                 break;
             case "cmdEdit":
+                fvMaterialList.Visible = true;
+                lbAddMatList.Visible = false;
+                gvMaterialList.Visible = !gvMaterialList.Visible;
+
                 DetailMaterialList matDetail = new DetailMaterialList();
                 matDetail.MIDX = int.Parse(cmdArg);
                 dataMaster.MaterialList = new DetailMaterialList[1];
@@ -48,8 +53,6 @@ public partial class WebSystem_Material_MaterialList : System.Web.UI.Page
                 ddlAsIDXE.SelectedValue = dataMaster.MaterialList[0].AsIDX.ToString();
                 DropDownList ddlKIDXE = (DropDownList)fvMaterialList.FindControl("ddlKIDXE");
                 ddlKIDXE.SelectedValue = dataMaster.MaterialList[0].KIDX.ToString();
-                break;
-            case "cmdCancel":
                 break;
         }
     }
@@ -155,8 +158,29 @@ public partial class WebSystem_Material_MaterialList : System.Web.UI.Page
                 setFormData(fvMaterialList, FormViewMode.Insert, null);
                 break;
         }
+
+        fvMaterialList.Visible = !fvMaterialList.Visible;
+        lbAddMatList.Visible = !lbAddMatList.Visible;
+        gvMaterialList.Visible = !gvMaterialList.Visible;
     }
     #endregion form commnd
+
+    #region btn command
+    protected void btnCommand(object sender, CommandEventArgs e)
+    {
+        string cmdName = e.CommandName.ToString();
+        string cmdArg = e.CommandArgument.ToString();
+
+        switch (cmdName)
+        {
+            case "cmdAddMatList":
+                fvMaterialList.Visible = true;
+                lbAddMatList.Visible = false;
+                gvMaterialList.Visible = !gvMaterialList.Visible;
+                break;
+        }
+    }
+    #endregion btn command
 
     #region bind data
     protected void getGridData(string dataName, DataMaster dataMaster, int actionType)

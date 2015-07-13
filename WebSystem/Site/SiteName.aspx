@@ -67,7 +67,7 @@
     </asp:GridView>
     <hr class="divider" />
     <asp:Literal ID="litTest" runat="server" Mode="Encode" Visible="true" />
-    <asp:FormView ID="fvSiteList" runat="server" DefaultMode="Insert" Width="100%" DataKeyNames="SiteIDX">
+    <asp:FormView ID="fvSiteList" runat="server" DefaultMode="Insert" CssClass="table table-borderless" DataKeyNames="SiteIDX">
         <InsertItemTemplate>
             <div class="form-horizontal" role="form">
                 <div class="form-group">

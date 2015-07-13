@@ -42,7 +42,7 @@ public partial class MasterPage_MasterPage : System.Web.UI.MasterPage
             case "asset":
                 moduleName = "ประเภทวัสดุภายในคลัง(Asset)";
                 break;
-            case "materialunit":
+            case "unit":
                 moduleName = "ประเภทหน่วยวัด(Unit)";
                 break;
             case "sitename":

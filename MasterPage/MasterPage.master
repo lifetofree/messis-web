@@ -40,8 +40,8 @@
                                 class="pull-right hidden-xs showopacity glyphicon glyphicon-shopping-cart"></span>
                         </a>
                         <ul class="dropdown-menu forAnimate" role="menu">
-                            <li><a href='<%=ResolveUrl("~/MaterialRecord/In") %>'>บันทึกวัสดุภายในคลัง(เข้า)</a></li>
-                            <li><a href='<%=ResolveUrl("~/MaterialRecord/Out") %>'>บันทึกวัสดุภายในคลัง(ออก)</a></li>
+                            <li><a href='<%=ResolveUrl("~/MaterialRecord/In") %>'>Reception Note(s)</a></li>
+                            <li><a href='<%=ResolveUrl("~/MaterialRecord/Out") %>'>Delivery Note(s)</a></li>
                             <li><a href='<%=ResolveUrl("~/MaterialReport") %>'>รายงานความเคลื่อนไหว</a></li>
                             <li class="divider"></li>
                             <li><a href='<%=ResolveUrl("~/MaterialList") %>'>รายการวัสดุภายในคลัง</a></li>

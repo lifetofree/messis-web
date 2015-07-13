@@ -25,10 +25,10 @@ public partial class MasterPage_MasterPage : System.Web.UI.MasterPage
                 moduleName = "Dashboard";
                 break;
             case "in":
-                moduleName = "บันทึกวัสดุภายในคลัง(เข้า)";
+                moduleName = "Reception Note(s)";
                 break;
             case "out":
-                moduleName = "บันทึกวัสดุภายในคลัง(ออก)";
+                moduleName = "Delivery Note(s)";
                 break;
             case "materiallist":
                 moduleName = "รายการวัสดุภายในคลัง";

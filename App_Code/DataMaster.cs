@@ -25,6 +25,12 @@ public class DataMaster
 
     [XmlElement("SiteList")]
     public DetailSiteList[] SiteList { get; set; }
+    
+    [XmlElement("MateralTypeList")]
+    public DetailMaterialTypeList[] MateralTypeList { get; set; }
+    
+    [XmlElement("UnitList")]
+    public DetailUnitList[] UnitList { get; set; }
 
     [XmlElement("MaterialList")]
     public DetailMaterialList[] MaterialList { get; set; }
@@ -71,6 +77,36 @@ public class DetailAssetList
     public int AsStatus { get; set; }
 }
 #endregion asset
+
+#region material type
+[Serializable]
+public class DetailMaterialTypeList
+{
+    [XmlElement("TypeIDX")]
+    public int TypeIDX { get; set; }
+    [XmlElement("TypeName")]
+    public string TypeName { get; set; }
+    [XmlElement("TypeDesc")]
+    public string TypeDesc { get; set; }
+    [XmlElement("TypeStatus")]
+    public int TypeStatus { get; set; }
+}
+#endregion material type
+
+#region unit
+[Serializable]
+public class DetailUnitList
+{
+    [XmlElement("UnitIDX")]
+    public int UnitIDX { get; set; }
+    [XmlElement("UnitName")]
+    public string UnitName { get; set; }
+    [XmlElement("UnitDesc")]
+    public string UnitDesc { get; set; }
+    [XmlElement("UnitStatus")]
+    public int UnitStatus { get; set; }
+}
+#endregion unit
 
 #region site
 [Serializable]

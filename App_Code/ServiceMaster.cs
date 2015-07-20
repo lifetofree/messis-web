@@ -34,6 +34,9 @@ public class ServiceMaster
             case "asset":
                 spName = "AssetAction";
                 break;
+            case "materialtype":
+                spName = "MaterialTypeAction";
+                break;
             case "unit":
                 spName = "UnitAction";
                 break;

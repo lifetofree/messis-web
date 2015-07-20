@@ -21,6 +21,7 @@ public partial class WebSystem_Site_SiteName : System.Web.UI.Page
         if (!IsPostBack)
         {
             getGridData("site", dataMaster, 20);
+            setFormData(fvSiteList, FormViewMode.Insert, null);
             fvSiteList.Visible = false;
         }
     }

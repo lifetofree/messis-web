@@ -26,8 +26,8 @@ public class DataMaster
     [XmlElement("SiteList")]
     public DetailSiteList[] SiteList { get; set; }
     
-    [XmlElement("MateralTypeList")]
-    public DetailMaterialTypeList[] MateralTypeList { get; set; }
+    [XmlElement("MaterialTypeList")]
+    public DetailMaterialTypeList[] MaterialTypeList { get; set; }
     
     [XmlElement("UnitList")]
     public DetailUnitList[] UnitList { get; set; }

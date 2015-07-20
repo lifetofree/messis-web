@@ -43,10 +43,10 @@ public partial class MasterPage_MasterPage : System.Web.UI.MasterPage
                 moduleName = "ประเภทวัสดุภายในคลัง(Asset)";
                 break;
             case "materialtypelist":
-                moduleName = "หมวดหมู่วัสดุภายในคลัง(Type)";
+                moduleName = "หมวดวัสดุภายในคลัง(Type)";
                 break;
             case "materialunit":
-                moduleName = "หน่วยวัด(Unit)";
+                moduleName = "หน่วย(Unit)";
                 break;
             case "sitename":
                 moduleName = "รายชื่อไซต์งาน";

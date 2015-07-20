@@ -49,7 +49,8 @@
                             <li class="divider"></li>
                             <li><a href='<%=ResolveUrl("~/Material/Kind") %>'>ประเภทวัสดุภายในคลัง(Kind)</a></li>
                             <li><a href='<%=ResolveUrl("~/Material/Asset") %>'>ประเภทวัสดุภายในคลัง(Asset)</a></li>
-                            <li><a href='<%=ResolveUrl("~/Material/Unit") %>'>ประเภทหน่วยวัด(Unit)</a></li>
+                            <li><a href='<%=ResolveUrl("~/MaterialTypeList") %>'>หมวดหมู่วัสดุภายในคลัง(Type)</a></li>
+                            <li><a href='<%=ResolveUrl("~/MaterialUnit") %>'>หน่วยวัด(Unit)</a></li>
                         </ul>
                     </li>
                     <li><a href='<%=ResolveUrl("~/SiteName") %>'>รายชื่อไซต์งาน<span style="font-size: 16px;"

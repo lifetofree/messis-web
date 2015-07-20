@@ -47,6 +47,7 @@
         routes.MapPageRoute("MaterialList", "MaterialList", "~/WebSystem/Material/MaterialList.aspx");
         routes.MapPageRoute("MaterialRegister", "MaterialRegister", "~/WebSystem/Material/MaterialRegister.aspx");
         routes.MapPageRoute("MaterialType", "Material/{matType}", "~/WebSystem/Material/MaterialType.aspx", true, new RouteValueDictionary { { "matType", "Kind" } });
+        routes.MapPageRoute("MaterialTypeList", "MaterialTypeList", "~/WebSystem/Material/MaterialTypeList.aspx");
         routes.MapPageRoute("MaterialUnit", "MaterialUnit", "~/WebSystem/Material/MaterialUnit.aspx");
         routes.MapPageRoute("MaterialReport", "MaterialReport", "~/WebSystem/Material/MaterialReport.aspx");
 

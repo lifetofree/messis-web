@@ -453,12 +453,16 @@ public partial class WebSystem_Material_MaterialRecord : System.Web.UI.Page
                         if (dataTempGv.MaterialRecordList != null)
                         {
                             var tData = dataTempGv.MaterialRecordList;
-                            var linqMaxOrder = (from m in tData
+                            try{
+								var linqMaxOrder = (from m in tData
                                                 where m.RecNo.StartsWith(curYear + curMonth) && m.RecStatus == 100000
                                                 orderby m.RecNo descending
                                                 select m.RecNo).FirstOrDefault();//m.RecNo).Max(); //.FirstOrDefault();
 
                             orderNum = (int.Parse(linqMaxOrder.Substring(4)) + 1).ToString("D3");
+							} catch {
+								orderNum = "001";
+							}
 
                             //litTest.Text = HttpUtility.HtmlDecode(funcWeb.ConvertObjectToXml(dataTempGv));
                         }

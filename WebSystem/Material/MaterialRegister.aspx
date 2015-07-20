@@ -38,6 +38,11 @@
                     <asp:Label ID="lblMDesc" runat="server" Text='<%# Eval("MDesc") %>' />
                 </ItemTemplate>
             </asp:TemplateField>
+            <asp:TemplateField HeaderText="Material Img.">
+                <ItemTemplate>
+                    <asp:Literal ID="litMatImg" runat="server" />
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:TemplateField HeaderText="Kind">
                 <ItemTemplate>
                     <asp:Label ID="lblKName" runat="server" Text='<%# Eval("KName") %>' />

@@ -6,7 +6,7 @@
 <asp:Content ID="MaterialTypeListContent" ContentPlaceHolderID="ContentMain" runat="Server">
 	<div class="form-group">
         <asp:LinkButton ID="lbAddType" CssClass="btn btn-primary" runat="server" data-original-title="เพิ่มรายการ" data-toggle="tooltip" OnCommand="btnCommand" CommandName="cmdAddType"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></asp:LinkButton>
-    </div>
+  </div>
 	<asp:GridView ID="gvTypeList" runat="server" CssClass="table table-bordered" AutoGenerateColumns="false" DataKeyNames="TypeIDX" OnRowCommand="gvRowCommand">
         <%-- table-striped table-hover--%>
         <HeaderStyle CssClass="info" />

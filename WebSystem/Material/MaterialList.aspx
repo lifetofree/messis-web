@@ -72,9 +72,9 @@
                         <asp:TextBox ID="tbMCode" runat="server" CssClass="form-control" placeholder="xxxxxx-xxx" MaxLength="10" ValidationGroup="fromInsert" />
 
                     </div>
-                    <label class="col-sm-2 control-label">Asset Type</label>
+                    <label class="col-sm-2 control-label">Material Type</label>
                     <div class="col-sm-3">
-                        <asp:DropDownList ID="ddlAsIDX" runat="server" CssClass="form-control" ValidationGroup="fromInsert" />
+                        <asp:DropDownList ID="ddlTypeIDX" runat="server" CssClass="form-control" ValidationGroup="fromInsert" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -98,6 +98,13 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="col-sm-2 control-label">Asset Type</label>
+                    <div class="col-sm-3">
+                        <asp:DropDownList ID="ddlAsIDX" runat="server" CssClass="form-control" ValidationGroup="fromInsert" />
+                    </div>
+                    <label class="col-sm-5 control-label"></label>
+                </div>
+                <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                         <asp:LinkButton ID="lbInsert" CssClass="btn btn-success" runat="server" data-original-title="บันทึก" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdInsert" CommandArgument="0" Text="บันทึก" ValidationGroup="fromInsert"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></asp:LinkButton>
                         <asp:LinkButton ID="lbCancel" CssClass="btn btn-danger" runat="server" data-original-title="ยกเลิก" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdReset" Text="ยกเลิก" ValidationGroup="fromInsert"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></asp:LinkButton>
@@ -112,11 +119,14 @@
                     <div class="col-sm-3">
                         <asp:Label ID="lblMIDXE" runat="server" Visible="false" Text='<%# Eval("MIDX") %>' ValidationGroup="fromEdit" />
                         <asp:Label ID="lblRMIDXE" runat="server" Visible="false" Text='<%# Eval("RMIDX") %>' ValidationGroup="fromEdit" />
+                        <asp:HiddenField ID="hfTypeIDXE" runat="server" Value='<%# Eval("TypeIDX") %>' />
+                        <asp:HiddenField ID="hfKIDXE" runat="server" Value='<%# Eval("KIDX") %>' />
+                        <asp:HiddenField ID="hfAsIDXE" runat="server" Value='<%# Eval("AsIDX") %>' />
                         <asp:TextBox ID="tbMCodeE" runat="server" CssClass="form-control" placeholder="xxxxxx-xxx" MaxLength="10" Text='<%# Eval("MCode") %>' ValidationGroup="fromEdit" />
                     </div>
-                    <label class="col-sm-2 control-label">Asset Type</label>
+                    <label class="col-sm-2 control-label">Material Type</label>
                     <div class="col-sm-3">
-                        <asp:DropDownList ID="ddlAsIDXE" runat="server" CssClass="form-control" ValidationGroup="fromEdit" />
+                        <asp:DropDownList ID="ddlTypeIDXE" runat="server" CssClass="form-control" ValidationGroup="fromEdit" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -133,7 +143,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Kind</label>
                     <div class="col-sm-3">
-                        <asp:DropDownList ID="ddlKIDXE" runat="server" CssClass="form-control" ValidationGroup="fromEdit" /><%--SelectedValue='<%# DataBinder.Eval(Container.DataItem, "KIDX")%>'--%>
+                        <asp:DropDownList ID="ddlKIDXE" runat="server" CssClass="form-control" ValidationGroup="fromEdit" />
                     </div>
                     <label class="col-sm-2 control-label">Rental/Day</label>
                     <div class="col-sm-3">
@@ -141,6 +151,10 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="col-sm-2 control-label">Asset Type</label>
+                    <div class="col-sm-3">
+                        <asp:DropDownList ID="ddlAsIDXE" runat="server" CssClass="form-control" ValidationGroup="fromEdit" />
+                    </div>
                     <label class="col-sm-2 control-label">สถานะ</label>
                     <div class="col-sm-3">
                         <asp:DropDownList ID="ddlMStatusE" runat="server" CssClass="form-control" SelectedValue='<%# Eval("MStatus") %>' ValidationGroup="fromEdit">
@@ -148,7 +162,7 @@
                             <asp:ListItem Value="0" Text="ไม่ใช้งาน" />
                         </asp:DropDownList>
                     </div>
-                    <label class="col-sm-5 control-label"></label>
+                    <!-- <label class="col-sm-5 control-label"></label> -->
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">

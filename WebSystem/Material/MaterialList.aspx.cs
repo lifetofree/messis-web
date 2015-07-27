@@ -99,7 +99,7 @@ public partial class WebSystem_Material_MaterialList : System.Web.UI.Page
                 //litTest.Text = HttpUtility.HtmlDecode(funcWeb.ConvertObjectToXml(dataMaster));
                 //get return code
                 localString = dataMaster.ReturnCode;
-                
+
                 //get current data
                 if (localString == "0")
                 {
@@ -119,6 +119,8 @@ public partial class WebSystem_Material_MaterialList : System.Web.UI.Page
                 matDetailE.MCode = ((TextBox)fvMaterialList.FindControl("tbMCodeE")).Text.Trim();
                 matDetailE.RMIDX = 0;
                 matDetailE.MNIDX = int.Parse(((Label)fvMaterialList.FindControl("lblMNIDX")).Text);
+                matDetailE.TypeIDX = int.Parse(((DropDownList)fvMaterialList.FindControl("ddlTypeIDXE")).SelectedValue);
+                matDetailE.UnitIDX = 1;//int.Parse(((DropDownList)fvMaterialList.FindControl("ddlUnitIDXE")).SelectedValue);
                 matDetailE.AsIDX = int.Parse(((DropDownList)fvMaterialList.FindControl("ddlAsIDXE")).SelectedValue);
                 matDetailE.MName = ((TextBox)fvMaterialList.FindControl("tbMNameE")).Text.Trim();
                 matDetailE.MDesc = ((TextBox)fvMaterialList.FindControl("tbMDescE")).Text.Trim();
@@ -205,40 +207,78 @@ public partial class WebSystem_Material_MaterialList : System.Web.UI.Page
         switch (fvMode)
         {
             case FormViewMode.Insert:
-                setDdlKindList(fvName, "ddlKIDX");
-                setDdlAssetList(fvName, "ddlAsIDX");
+                setDdlList(fvName, "ddlKIDX", "kind", "3");
+                setDdlList(fvName, "ddlAsIDX", "asset", "1");
+                setDdlList(fvName, "ddlTypeIDX", "materialtype", "1");
                 break;
             case FormViewMode.Edit:
-                setDdlKindList(fvName, "ddlKIDXE");
-                setDdlAssetList(fvName, "ddlAsIDXE");
+                HiddenField typeIDX = (HiddenField)fvName.FindControl("hfTypeIDXE");
+                HiddenField kIDX = (HiddenField)fvName.FindControl("hfKIDXE");
+                HiddenField asIDX = (HiddenField)fvName.FindControl("hfAsIDXE");
+                setDdlList(fvName, "ddlKIDXE", "kind", "3");
+                setDdlList(fvName, "ddlAsIDXE", "asset", "1");
+                setDdlList(fvName, "ddlTypeIDXE", "materialtype", typeIDX.Value);
                 break;
         }
     }
 
-    protected void setDdlKindList(FormView fvName, string ddlName)
+    protected void setDdlList(FormView fvName, string ddlName, string cText, string dSelect)
     {
         DropDownList ddlList = (DropDownList)fvName.FindControl(ddlName);
         DataMaster dLocal = new DataMaster();
-        dLocal = serviceMaster.ActionDataMaster("kind", dLocal, 21);
-        ddlList.DataSource = dLocal.KindList;
-        ddlList.DataTextField = "KName";
-        ddlList.DataValueField = "KIDX";
+        dLocal = serviceMaster.ActionDataMaster(cText, dLocal, 21);
+        switch(cText)
+        {
+          case "kind":
+              ddlList.DataSource = dLocal.KindList;
+              ddlList.DataTextField = "KName";
+              ddlList.DataValueField = "KIDX";
+              break;
+          case "asset":
+              ddlList.DataSource = dLocal.AssetList;
+              ddlList.DataTextField = "AsName";
+              ddlList.DataValueField = "AsIDX";
+              break;
+          case "materialtype":
+              ddlList.DataSource = dLocal.MaterialTypeList;
+              ddlList.DataTextField = "TypeName";
+              ddlList.DataValueField = "TypeIDX";
+              break;
+          case "unit":
+              ddlList.DataSource = dLocal.UnitList;
+              ddlList.DataTextField = "UnitName";
+              ddlList.DataValueField = "UnitIDX";
+              break;
+        }
         ddlList.DataBind();
         //ddlList.Items.Insert(0, new ListItem("-- Select Kind --", "0"));
-        ddlList.SelectedValue = "3";
+        ddlList.SelectedValue = dSelect;
     }
 
-    protected void setDdlAssetList(FormView fvName, string ddlName)
-    {
-        DropDownList ddlList = (DropDownList)fvName.FindControl(ddlName);
-        DataMaster dLocal = new DataMaster();
-        dLocal = serviceMaster.ActionDataMaster("asset", dLocal, 21);
-        ddlList.DataSource = dLocal.AssetList;
-        ddlList.DataTextField = "AsName";
-        ddlList.DataValueField = "AsIDX";
-        ddlList.DataBind();
-        //ddlList.Items.Insert(0, new ListItem("-- Select Asset Type --", "0"));
-        ddlList.SelectedValue = "1";
-    }
+    // protected void setDdlKindList(FormView fvName, string ddlName)
+    // {
+    //     DropDownList ddlList = (DropDownList)fvName.FindControl(ddlName);
+    //     DataMaster dLocal = new DataMaster();
+    //     dLocal = serviceMaster.ActionDataMaster("kind", dLocal, 21);
+    //     ddlList.DataSource = dLocal.KindList;
+    //     ddlList.DataTextField = "KName";
+    //     ddlList.DataValueField = "KIDX";
+    //     ddlList.DataBind();
+    //     //ddlList.Items.Insert(0, new ListItem("-- Select Kind --", "0"));
+    //     ddlList.SelectedValue = "3";
+    // }
+    //
+    // protected void setDdlAssetList(FormView fvName, string ddlName)
+    // {
+    //     DropDownList ddlList = (DropDownList)fvName.FindControl(ddlName);
+    //     DataMaster dLocal = new DataMaster();
+    //     dLocal = serviceMaster.ActionDataMaster("asset", dLocal, 21);
+    //     ddlList.DataSource = dLocal.AssetList;
+    //     ddlList.DataTextField = "AsName";
+    //     ddlList.DataValueField = "AsIDX";
+    //     ddlList.DataBind();
+    //     //ddlList.Items.Insert(0, new ListItem("-- Select Asset Type --", "0"));
+    //     ddlList.SelectedValue = "1";
+    // }
     #endregion bind data
 }

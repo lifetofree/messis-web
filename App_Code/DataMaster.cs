@@ -25,10 +25,10 @@ public class DataMaster
 
     [XmlElement("SiteList")]
     public DetailSiteList[] SiteList { get; set; }
-    
+
     [XmlElement("MaterialTypeList")]
     public DetailMaterialTypeList[] MaterialTypeList { get; set; }
-    
+
     [XmlElement("UnitList")]
     public DetailUnitList[] UnitList { get; set; }
 
@@ -152,6 +152,14 @@ public class DetailMaterialList
     public int MNIDX { get; set; }
     [XmlElement("MName")]
     public string MName { get; set; }
+    [XmlElement("TypeIDX")]
+    public int TypeIDX { get; set; }
+    [XmlElement("TypeName")]
+    public string TypeName { get; set; }
+    [XmlElement("UnitIDX")]
+    public int UnitIDX { get; set; }
+    [XmlElement("UnitName")]
+    public string UnitName { get; set; }
     [XmlElement("AsIDX")]
     public int AsIDX { get; set; }
     [XmlElement("AsName")]
@@ -202,7 +210,7 @@ public class DetailMaterialRegisterList
     public string KName { get; set; }
     [XmlElement("RUD")]
     public float RUD { get; set; }
-    
+
     [XmlElement("SerialNo")]
     public string SerialNo { get; set; }
     [XmlElement("PurDate")]

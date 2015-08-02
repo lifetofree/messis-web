@@ -60,7 +60,7 @@
         </div>
     </nav>
     <form id="formMaster" runat="server">
-        <ajaxToolkit:ToolkitScriptManager ID="tsmMaster" runat="server" />
+        <asp:ScriptManager ID="tsmMaster" runat="server" />
         <script src='<%=ResolveUrl("~/Scripts/jquery-1.10.2.js") %>'></script>
         <script src='<%=ResolveUrl("~/Scripts/bootstrap.js") %>'></script>
         <script src='<%=ResolveUrl("~/Scripts/custom.js") %>'></script>

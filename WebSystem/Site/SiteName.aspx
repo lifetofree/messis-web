@@ -77,44 +77,44 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Site Code</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbSiteCode" runat="server" CssClass="form-control" placeholder="Site Code" MaxLength="7" ValidationGroup="fromInsert" />
+                        <asp:TextBox ID="tbSiteCode" runat="server" CssClass="form-control" placeholder="Site Code" MaxLength="7" ValidationGroup="formInsert" />
                     </div>
                     <label class="col-sm-2 control-label">Project</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbProjectName" runat="server" CssClass="form-control" placeholder="Project" MaxLength="500" ValidationGroup="fromInsert" />
+                        <asp:TextBox ID="tbProjectName" runat="server" CssClass="form-control" placeholder="Project" MaxLength="500" ValidationGroup="formInsert" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Manager</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbManagerName" runat="server" CssClass="form-control" placeholder="Manager" MaxLength="500" ValidationGroup="fromInsert" />
+                        <asp:TextBox ID="tbManagerName" runat="server" CssClass="form-control" placeholder="Manager" MaxLength="500" ValidationGroup="formInsert" />
                     </div>
                     <label class="col-sm-2 control-label">Admin. Staff</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbStaffName" runat="server" CssClass="form-control" placeholder="Admin. Staff" MaxLength="500" ValidationGroup="fromInsert" />
+                        <asp:TextBox ID="tbStaffName" runat="server" CssClass="form-control" placeholder="Admin. Staff" MaxLength="500" ValidationGroup="formInsert" />
                     </div>
                 </div>
                 <div class="form-group" style="display:none;">
                     <label class="col-sm-2 control-label">Location</label>
                     <div class="col-sm-8">
-                        <asp:TextBox ID="tbSiteLocation" runat="server" CssClass="form-control" placeholder="Location" MaxLength="1000" ValidationGroup="fromInsert" />
+                        <asp:TextBox ID="tbSiteLocation" runat="server" CssClass="form-control" placeholder="Location" MaxLength="1000" ValidationGroup="formInsert" />
                     </div>
                     <label class="col-sm-2 control-label" />
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Start</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbSiteStart" runat="server" CssClass="form-control datepicker" placeholder="Site Start Date : DD/MM/YYYY" ValidationGroup="fromInsert" />
+                        <asp:TextBox ID="tbSiteStart" runat="server" CssClass="form-control datepicker" placeholder="Site Start Date : DD/MM/YYYY" ValidationGroup="formInsert" />
                     </div>
                     <label class="col-sm-2 control-label">End</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbSiteEnd" runat="server" CssClass="form-control datepicker" placeholder="Site End Date : DD/MM/YYYY" ValidationGroup="fromInsert" />
+                        <asp:TextBox ID="tbSiteEnd" runat="server" CssClass="form-control datepicker" placeholder="Site End Date : DD/MM/YYYY" ValidationGroup="formInsert" />
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <asp:LinkButton ID="lbInsert" CssClass="btn btn-success" runat="server" data-original-title="บันทึก" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdInsert" CommandArgument="0" Text="บันทึก" ValidationGroup="fromInsert"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></asp:LinkButton>
-                        <asp:LinkButton ID="lbCancel" CssClass="btn btn-danger" runat="server" data-original-title="ยกเลิก" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdReset" Text="ยกเลิก" ValidationGroup="fromInsert"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></asp:LinkButton>
+                        <asp:LinkButton ID="lbInsert" CssClass="btn btn-success" runat="server" data-original-title="บันทึก" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdInsert" CommandArgument="0" Text="บันทึก" ValidationGroup="formInsert"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></asp:LinkButton>
+                        <asp:LinkButton ID="lbCancel" CssClass="btn btn-danger" runat="server" data-original-title="ยกเลิก" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdReset" Text="ยกเลิก" ValidationGroup="formInsert"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></asp:LinkButton>
                     </div>
                 </div>
             </div>
@@ -124,46 +124,46 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Site Code</label>
                     <div class="col-sm-3">
-                        <asp:Label ID="lblSiteIDXE" runat="server" Visible="false" Text='<%# Eval("SiteIDX") %>' ValidationGroup="fromEdit" />
-                        <asp:Label ID="lblRSiteIDXE" runat="server" Visible="false" Text='<%# Eval("RSiteIDX") %>' ValidationGroup="fromEdit" />
-                        <asp:TextBox ID="tbSiteCodeE" runat="server" CssClass="form-control" placeholder="Site Code" MaxLength="7" Text='<%# Eval("SiteCode") %>' ValidationGroup="fromEdit" />
+                        <asp:Label ID="lblSiteIDXE" runat="server" Visible="false" Text='<%# Eval("SiteIDX") %>' ValidationGroup="formEdit" />
+                        <asp:Label ID="lblRSiteIDXE" runat="server" Visible="false" Text='<%# Eval("RSiteIDX") %>' ValidationGroup="formEdit" />
+                        <asp:TextBox ID="tbSiteCodeE" runat="server" CssClass="form-control" placeholder="Site Code" MaxLength="7" Text='<%# Eval("SiteCode") %>' ValidationGroup="formEdit" />
                     </div>
                     <label class="col-sm-2 control-label">Project</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbProjectNameE" runat="server" CssClass="form-control" placeholder="Project" MaxLength="500" Text='<%# Eval("ProjectName") %>' ValidationGroup="fromEdit" />
+                        <asp:TextBox ID="tbProjectNameE" runat="server" CssClass="form-control" placeholder="Project" MaxLength="500" Text='<%# Eval("ProjectName") %>' ValidationGroup="formEdit" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Manager</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbManagerNameE" runat="server" CssClass="form-control" placeholder="Manager" MaxLength="500" Text='<%# Eval("ManagerName") %>' ValidationGroup="fromEdit" />
+                        <asp:TextBox ID="tbManagerNameE" runat="server" CssClass="form-control" placeholder="Manager" MaxLength="500" Text='<%# Eval("ManagerName") %>' ValidationGroup="formEdit" />
                     </div>
                     <label class="col-sm-2 control-label">Admin. Staff</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbStaffNameE" runat="server" CssClass="form-control" placeholder="Admin. Staff" MaxLength="500" Text='<%# Eval("StaffName") %>' ValidationGroup="fromEdit" />
+                        <asp:TextBox ID="tbStaffNameE" runat="server" CssClass="form-control" placeholder="Admin. Staff" MaxLength="500" Text='<%# Eval("StaffName") %>' ValidationGroup="formEdit" />
                     </div>
                 </div>
                 <div class="form-group" style="display:none;">
                     <label class="col-sm-2 control-label">Location</label>
                     <div class="col-sm-8">
-                        <asp:TextBox ID="tbSiteLocationE" runat="server" CssClass="form-control" placeholder="Location" MaxLength="1000" Text='<%# Eval("SiteLocation") %>' ValidationGroup="fromEdit" />
+                        <asp:TextBox ID="tbSiteLocationE" runat="server" CssClass="form-control" placeholder="Location" MaxLength="1000" Text='<%# Eval("SiteLocation") %>' ValidationGroup="formEdit" />
                     </div>
                     <label class="col-sm-2 control-label" />
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Start</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbSiteStartE" runat="server" CssClass="form-control datepicker" placeholder="Site Start Date : DD/MM/YYYY" Text='<%# Eval("SiteStart") %>' ValidationGroup="fromEdit" />
+                        <asp:TextBox ID="tbSiteStartE" runat="server" CssClass="form-control datepicker" placeholder="Site Start Date : DD/MM/YYYY" Text='<%# Eval("SiteStart") %>' ValidationGroup="formEdit" />
                     </div>
                     <label class="col-sm-2 control-label">End</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbSiteEndE" runat="server" CssClass="form-control datepicker" placeholder="Site End Date : DD/MM/YYYY" Text='<%# Eval("SiteEnd") %>' ValidationGroup="fromEdit" />
+                        <asp:TextBox ID="tbSiteEndE" runat="server" CssClass="form-control datepicker" placeholder="Site End Date : DD/MM/YYYY" Text='<%# Eval("SiteEnd") %>' ValidationGroup="formEdit" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">สถานะ</label>
                     <div class="col-sm-3">
-                        <asp:DropDownList ID="ddlSiteStatusE" runat="server" CssClass="form-control" SelectedValue='<%# Eval("SiteStatus") %>' ValidationGroup="fromEdit">
+                        <asp:DropDownList ID="ddlSiteStatusE" runat="server" CssClass="form-control" SelectedValue='<%# Eval("SiteStatus") %>' ValidationGroup="formEdit">
                             <asp:ListItem Value="1" Text="ใช้งาน" />
                             <asp:ListItem Value="0" Text="ไม่ใช้งาน" />
                         </asp:DropDownList>
@@ -172,8 +172,8 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <asp:LinkButton ID="lbInsert" CssClass="btn btn-success" runat="server" data-original-title="บันทึก" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdUpdate" CommandArgument="0" Text="บันทึก" ValidationGroup="fromEdit"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></asp:LinkButton>
-                        <asp:LinkButton ID="lbCancel" CssClass="btn btn-danger" runat="server" data-original-title="ยกเลิก" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdCancel" Text="ยกเลิก" ValidationGroup="fromEdit"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></asp:LinkButton>
+                        <asp:LinkButton ID="lbInsert" CssClass="btn btn-success" runat="server" data-original-title="บันทึก" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdUpdate" CommandArgument="0" Text="บันทึก" ValidationGroup="formEdit"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></asp:LinkButton>
+                        <asp:LinkButton ID="lbCancel" CssClass="btn btn-danger" runat="server" data-original-title="ยกเลิก" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdCancel" Text="ยกเลิก" ValidationGroup="formEdit"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></asp:LinkButton>
                     </div>
                 </div>
             </div>

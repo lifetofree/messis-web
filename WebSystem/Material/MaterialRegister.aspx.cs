@@ -19,7 +19,7 @@ public partial class WebSystem_Material_MaterialRegister : System.Web.UI.Page
     string localString = String.Empty;
     int actionType = 0;
 
-    string imgPath = ConfigurationSettings.AppSettings["MaterialImages"];
+    string imgPath = ConfigurationManager.AppSettings["MaterialImages"];
     #endregion  initial function/data
 
     protected void Page_Load(object sender, EventArgs e)
@@ -82,6 +82,52 @@ public partial class WebSystem_Material_MaterialRegister : System.Web.UI.Page
         getGridData("materialreg", dataMaster, 20);
         setFormData(fvMaterialRegList, FormViewMode.Insert, null);
     }
+
+    protected void gvRowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            HiddenField mCode = (HiddenField)e.Row.Cells[0].FindControl("hfMCode");
+            HiddenField rCode = (HiddenField)e.Row.Cells[0].FindControl("hfRCode");
+            System.Web.UI.WebControls.Image imgMaterial = (System.Web.UI.WebControls.Image)e.Row.Cells[3].FindControl("imgMaterial");
+            string dirName = imgPath + mCode.Value + rCode.Value;
+            string[] filesindirectory = Directory.GetFiles(Server.MapPath(dirName));
+            List<string> images = new List<string>(filesindirectory.Count());
+            int tempCount = 0;
+            foreach (string item in filesindirectory)
+            {
+                if(tempCount == 0)
+                {
+                    imgMaterial.ImageUrl = string.Format(dirName + "/{0}", Path.GetFileName(item));
+                    imgMaterial.Width = 150;
+                    tempCount++;
+                }
+            }
+        }
+    }
+
+    //protected void gvSorting(object sender, GridViewSortEventArgs e)
+    //{
+    //    GridView gv = (GridView)sender;
+    //    SqlDataSource ds = (SqlDataSource)gv.DataSource;
+    //    ds.SelectCommand = ds.SelectCommand + " order by " + e.SortExpression + " " + getSortDirection(e.SortDirection.ToString());
+    //    gvMaterialRegList.DataSource = ds;
+    //    gvMaterialRegList.DataBind();
+    //}
+
+    //protected string getSortDirection(string sSortDirCmd)
+    //{
+    //    string sSortDir;
+    //    if ((SortDirection.Ascending.ToString() == sSortDirCmd))
+    //    {
+    //        sSortDir = "asc";
+    //    }
+    //    else
+    //    {
+    //        sSortDir = "desc";
+    //    }
+    //    return sSortDir;
+    //}
     #endregion grid command
 
     #region form command
@@ -142,7 +188,7 @@ public partial class WebSystem_Material_MaterialRegister : System.Web.UI.Page
                                 string fileName = dirName + "-" + i;
                                 string filePath = Server.MapPath(imgPath + dirName);
                                 string extension = Path.GetExtension(hpf.FileName);
-                                hpf.SaveAs(Path.Combine(filePath, fileName + extension));//filePath + "\\" + fileName + extension);
+                                hpf.SaveAs(Path.Combine(filePath, fileName + extension));
                             }
                         }
                     }
@@ -377,6 +423,6 @@ public partial class WebSystem_Material_MaterialRegister : System.Web.UI.Page
             g.DrawImage(image, 0, 0, newWidth, newHeight);
         }
         return newImage;
-    } 
+    }
     #endregion files upload and images
 }

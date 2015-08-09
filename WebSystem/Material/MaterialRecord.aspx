@@ -144,11 +144,11 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">From</label>
                     <div class="col-sm-3">
-                        <asp:DropDownList ID="ddlFromSiteList" runat="server" CssClass="btn chosen-select" ValidationGroup="fromInsert" />
+                        <asp:DropDownList ID="ddlFromSiteList" runat="server" CssClass="btn chosen-select" ValidationGroup="formInsert" />
                     </div>
                     <label class="col-sm-2 control-label">To</label>
                     <div class="col-sm-3">
-                        <asp:DropDownList ID="ddlToSiteList" runat="server" CssClass="btn chosen-select" ValidationGroup="fromInsert" />
+                        <asp:DropDownList ID="ddlToSiteList" runat="server" CssClass="btn chosen-select" ValidationGroup="formInsert" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -159,7 +159,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Material Code</label>
                     <div class="col-sm-3">
-                        <asp:DropDownList ID="ddlMCode" runat="server" CssClass="btn chosen-select" OnSelectedIndexChanged="ddlMCode_SelectedIndexChanged" AutoPostBack="true" ValidationGroup="fromInsert" />
+                        <asp:DropDownList ID="ddlMCode" runat="server" CssClass="btn chosen-select" OnSelectedIndexChanged="ddlMCode_SelectedIndexChanged" AutoPostBack="true" ValidationGroup="formInsert" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -246,8 +246,8 @@
                 </div>--%>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <asp:LinkButton ID="lbInsert" CssClass="btn btn-success" runat="server" data-original-title="บันทึก" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdInsert" CommandArgument="0" Text="บันทึก" ValidationGroup="fromInsert"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></asp:LinkButton>
-                        <asp:LinkButton ID="lbCancel" CssClass="btn btn-danger" runat="server" data-original-title="ยกเลิก" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdReset" Text="ยกเลิก" ValidationGroup="fromInsert"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></asp:LinkButton>
+                        <asp:LinkButton ID="lbInsert" CssClass="btn btn-success" runat="server" data-original-title="บันทึก" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdInsert" CommandArgument="0" Text="บันทึก" ValidationGroup="formInsert"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></asp:LinkButton>
+                        <asp:LinkButton ID="lbCancel" CssClass="btn btn-danger" runat="server" data-original-title="ยกเลิก" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdReset" Text="ยกเลิก" ValidationGroup="formInsert"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></asp:LinkButton>
                     </div>
                 </div>
             </div>
@@ -270,12 +270,12 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">From</label>
                     <div class="col-sm-3">
-                        <!-- <asp:DropDownList ID="ddlFromSiteList" runat="server" CssClass="btn chosen-select" ValidationGroup="fromInsert" /> -->
+                        <!-- <asp:DropDownList ID="ddlFromSiteList" runat="server" CssClass="btn chosen-select" ValidationGroup="formInsert" /> -->
                         <asp:TextBox ID="tbRecFromSiteNameE" runat="server" CssClass="form-control" Text='<%# Eval("RecFromSiteName") %>' ReadOnly="true" ValidationGroup="formEdit" />
                     </div>
                     <label class="col-sm-2 control-label">To</label>
                     <div class="col-sm-3">
-                        <!-- <asp:DropDownList ID="ddlToSiteList" runat="server" CssClass="btn chosen-select" ValidationGroup="fromInsert" /> -->
+                        <!-- <asp:DropDownList ID="ddlToSiteList" runat="server" CssClass="btn chosen-select" ValidationGroup="formInsert" /> -->
                         <asp:TextBox ID="tbRecToSiteNameE" runat="server" CssClass="form-control" Text='<%# Eval("RecToSiteName") %>' ReadOnly="true" ValidationGroup="formEdit" />
                     </div>
                 </div>

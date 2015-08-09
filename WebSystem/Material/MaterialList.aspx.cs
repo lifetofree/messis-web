@@ -84,6 +84,8 @@ public partial class WebSystem_Material_MaterialList : System.Web.UI.Page
                 matDetail.RMIDX = 0;
                 matDetail.MNIDX = 0;
                 matDetail.MName = ((TextBox)fvMaterialList.FindControl("tbMName")).Text.Trim();
+                matDetail.TypeIDX = int.Parse(((DropDownList)fvMaterialList.FindControl("ddlTypeIDX")).SelectedValue);
+                matDetail.UnitIDX = int.Parse(((DropDownList)fvMaterialList.FindControl("ddlUnitIDX")).SelectedValue);
                 matDetail.AsIDX = int.Parse(((DropDownList)fvMaterialList.FindControl("ddlAsIDX")).SelectedValue);
                 matDetail.MDesc = ((TextBox)fvMaterialList.FindControl("tbMDesc")).Text.Trim();
                 matDetail.KIDX = int.Parse(((DropDownList)fvMaterialList.FindControl("ddlKIDX")).SelectedValue);
@@ -120,7 +122,7 @@ public partial class WebSystem_Material_MaterialList : System.Web.UI.Page
                 matDetailE.RMIDX = 0;
                 matDetailE.MNIDX = int.Parse(((Label)fvMaterialList.FindControl("lblMNIDX")).Text);
                 matDetailE.TypeIDX = int.Parse(((DropDownList)fvMaterialList.FindControl("ddlTypeIDXE")).SelectedValue);
-                matDetailE.UnitIDX = 1;//int.Parse(((DropDownList)fvMaterialList.FindControl("ddlUnitIDXE")).SelectedValue);
+                matDetailE.UnitIDX = int.Parse(((DropDownList)fvMaterialList.FindControl("ddlUnitIDXE")).SelectedValue);
                 matDetailE.AsIDX = int.Parse(((DropDownList)fvMaterialList.FindControl("ddlAsIDXE")).SelectedValue);
                 matDetailE.MName = ((TextBox)fvMaterialList.FindControl("tbMNameE")).Text.Trim();
                 matDetailE.MDesc = ((TextBox)fvMaterialList.FindControl("tbMDescE")).Text.Trim();
@@ -210,14 +212,17 @@ public partial class WebSystem_Material_MaterialList : System.Web.UI.Page
                 setDdlList(fvName, "ddlKIDX", "kind", "3");
                 setDdlList(fvName, "ddlAsIDX", "asset", "1");
                 setDdlList(fvName, "ddlTypeIDX", "materialtype", "1");
+                setDdlList(fvName, "ddlUnitIDX", "unit", "1");
                 break;
             case FormViewMode.Edit:
                 HiddenField typeIDX = (HiddenField)fvName.FindControl("hfTypeIDXE");
+                HiddenField unitIDX = (HiddenField)fvName.FindControl("hfUnitIDXE");
                 HiddenField kIDX = (HiddenField)fvName.FindControl("hfKIDXE");
                 HiddenField asIDX = (HiddenField)fvName.FindControl("hfAsIDXE");
-                setDdlList(fvName, "ddlKIDXE", "kind", "3");
-                setDdlList(fvName, "ddlAsIDXE", "asset", "1");
+                setDdlList(fvName, "ddlKIDXE", "kind", kIDX.Value);
+                setDdlList(fvName, "ddlAsIDXE", "asset", asIDX.Value);
                 setDdlList(fvName, "ddlTypeIDXE", "materialtype", typeIDX.Value);
+                setDdlList(fvName, "ddlUnitIDXE", "unit", unitIDX.Value);
                 break;
         }
     }

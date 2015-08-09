@@ -11,7 +11,7 @@
     <div class="form-group">
         <asp:LinkButton ID="lbAddMatReg" CssClass="btn btn-primary" runat="server" data-original-title="เพิ่มรายการ" data-toggle="tooltip" OnCommand="btnCommand" CommandName="cmdAddMatReg"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></asp:LinkButton>
     </div>
-    <asp:GridView ID="gvMaterialRegList" runat="server" CssClass="table table-bordered" AutoGenerateColumns="false" AllowPaging="true" PageSize="10" OnPageIndexChanging="gvPageIndexChanging" OnRowCommand="gvRowCommand">
+    <asp:GridView ID="gvMaterialRegList" runat="server" CssClass="table table-bordered" AutoGenerateColumns="false" AllowPaging="true" PageSize="10" OnPageIndexChanging="gvPageIndexChanging" OnRowCommand="gvRowCommand" OnRowDataBound="gvRowDataBound">
         <%-- table-striped table-hover--%>
         <HeaderStyle CssClass="info" />
         <SelectedRowStyle CssClass="warning" />
@@ -25,6 +25,8 @@
         <Columns>
             <asp:TemplateField HeaderText="Material Code">
                 <ItemTemplate>
+                    <asp:HiddenField ID="hfMCode" runat="server" Value='<%# Eval("MCode") %>' />
+                    <asp:HiddenField ID="hfRCode" runat="server" Value='<%# Eval("RCode") %>' />
                     <asp:Label ID="lblMCode" runat="server" Text='<%# (string)Eval("MCode") + (string)Eval("RCode") %>' />
                 </ItemTemplate>
             </asp:TemplateField>
@@ -40,7 +42,8 @@
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Material Img.">
                 <ItemTemplate>
-                    <asp:Literal ID="litMatImg" runat="server" />
+                    <%--<asp:Literal ID="litMatImg" runat="server" />--%>
+                    <asp:Image ID="imgMaterial" runat="server" />
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Kind">
@@ -85,9 +88,9 @@
                     <div class="col-sm-3">
                         <div class="input-group">
                             <div class="input-group-btn">
-                                <asp:DropDownList ID="ddlMCode" runat="server" CssClass="btn chosen-select" OnSelectedIndexChanged="ddlMCode_SelectedIndexChanged" AutoPostBack="true" ValidationGroup="fromInsert" />
+                                <asp:DropDownList ID="ddlMCode" runat="server" CssClass="btn chosen-select" OnSelectedIndexChanged="ddlMCode_SelectedIndexChanged" AutoPostBack="true" ValidationGroup="formInsert" />
                             </div>
-                            <asp:TextBox ID="tbRCode" runat="server" CssClass="form-control" placeholder="xxxx" MaxLength="4" ValidationGroup="fromInsert" />
+                            <asp:TextBox ID="tbRCode" runat="server" CssClass="form-control" placeholder="xxxx" MaxLength="4" ValidationGroup="formInsert" />
                         </div>
                     </div>
                     <label class="col-sm-2 control-label">Asset Type</label>
@@ -98,11 +101,11 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Material Name</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbMName" runat="server" CssClass="form-control" placeholder="Material Name" MaxLength="250" Enabled="false" ValidationGroup="fromInsert" />
+                        <asp:TextBox ID="tbMName" runat="server" CssClass="form-control" placeholder="Material Name" MaxLength="250" Enabled="false" ValidationGroup="formInsert" />
                     </div>
                     <label class="col-sm-2 control-label">Material Desc.</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbMDesc" runat="server" CssClass="form-control" placeholder="Material Description" MaxLength="500" Enabled="false" ValidationGroup="fromInsert" />
+                        <asp:TextBox ID="tbMDesc" runat="server" CssClass="form-control" placeholder="Material Description" MaxLength="500" Enabled="false" ValidationGroup="formInsert" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -112,43 +115,43 @@
                     </div>
                     <label class="col-sm-2 control-label">Rental/Day</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbRUD" runat="server" CssClass="form-control" placeholder="Rental per Day" MaxLength="10" Enabled="false" ValidationGroup="fromInsert" />
+                        <asp:TextBox ID="tbRUD" runat="server" CssClass="form-control" placeholder="Rental per Day" MaxLength="10" Enabled="false" ValidationGroup="formInsert" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Serial No.</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbSerialNo" runat="server" CssClass="form-control" placeholder="Serial No." MaxLength="100" ValidationGroup="fromInsert" />
+                        <asp:TextBox ID="tbSerialNo" runat="server" CssClass="form-control" placeholder="Serial No." MaxLength="100" ValidationGroup="formInsert" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Purchase Date</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbPurDate" runat="server" CssClass="form-control datepicker" placeholder="Purchase Date" ValidationGroup="fromInsert" />
+                        <asp:TextBox ID="tbPurDate" runat="server" CssClass="form-control datepicker" placeholder="Purchase Date" ValidationGroup="formInsert" />
                     </div>
                     <label class="col-sm-2 control-label">Purchase From</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbPurFrom" runat="server" CssClass="form-control" placeholder="Purchase From" MaxLength="250" ValidationGroup="fromInsert" />
+                        <asp:TextBox ID="tbPurFrom" runat="server" CssClass="form-control" placeholder="Purchase From" MaxLength="250" ValidationGroup="formInsert" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Quantity</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbQuantity" runat="server" CssClass="form-control" placeholder="Quantity" MaxLength="10" Text="1" ValidationGroup="fromInsert" />
+                        <asp:TextBox ID="tbQuantity" runat="server" CssClass="form-control" placeholder="Quantity" MaxLength="10" Text="1" ValidationGroup="formInsert" />
                     </div>
                     <label class="col-sm-2 control-label">Voucher No.</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbVoucherNo" runat="server" CssClass="form-control" placeholder="Voucher No." MaxLength="50" ValidationGroup="fromInsert" />
+                        <asp:TextBox ID="tbVoucherNo" runat="server" CssClass="form-control" placeholder="Voucher No." MaxLength="50" ValidationGroup="formInsert" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Unit Price</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbUnitPrice" runat="server" CssClass="form-control" placeholder="Unit Price" MaxLength="50" ValidationGroup="fromInsert" />
+                        <asp:TextBox ID="tbUnitPrice" runat="server" CssClass="form-control" placeholder="Unit Price" MaxLength="50" ValidationGroup="formInsert" />
                     </div>
                     <label class="col-sm-2 control-label">Amount(Baht)</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbAmount" runat="server" CssClass="form-control" placeholder="Amount(Baht)" MaxLength="50" ValidationGroup="fromInsert" />
+                        <asp:TextBox ID="tbAmount" runat="server" CssClass="form-control" placeholder="Amount(Baht)" MaxLength="50" ValidationGroup="formInsert" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -160,8 +163,8 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                       <asp:LinkButton ID="lbInsert" CssClass="btn btn-success" runat="server" data-original-title="บันทึก" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdInsert" CommandArgument="0" Text="บันทึก" ValidationGroup="fromInsert"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></asp:LinkButton>
-                        <asp:LinkButton ID="lbCancel" CssClass="btn btn-danger" runat="server" data-original-title="ยกเลิก" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdReset" Text="ยกเลิก" ValidationGroup="fromInsert"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></asp:LinkButton>
+                       <asp:LinkButton ID="lbInsert" CssClass="btn btn-success" runat="server" data-original-title="บันทึก" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdInsert" CommandArgument="0" Text="บันทึก" ValidationGroup="formInsert"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></asp:LinkButton>
+                        <asp:LinkButton ID="lbCancel" CssClass="btn btn-danger" runat="server" data-original-title="ยกเลิก" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdReset" Text="ยกเลิก" ValidationGroup="formInsert"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></asp:LinkButton>
                     </div>
                 </div>
             </div>
@@ -171,73 +174,73 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Material Code</label>
                     <div class="col-sm-3">
-                        <asp:Label ID="lblRegIDXE" runat="server" Visible="false" Text='<%# Eval("RegIDX") %>' ValidationGroup="fromEdit" />
+                        <asp:Label ID="lblRegIDXE" runat="server" Visible="false" Text='<%# Eval("RegIDX") %>' ValidationGroup="formEdit" />
                         <div class="input-group">
                             <div class="input-group-btn">
-                                <asp:DropDownList ID="ddlMCodeE" runat="server" CssClass="btn chosen-select" ValidationGroup="fromEdit" OnSelectedIndexChanged="ddlMCode_SelectedIndexChanged" AutoPostBack="true" />
+                                <asp:DropDownList ID="ddlMCodeE" runat="server" CssClass="btn chosen-select" ValidationGroup="formEdit" OnSelectedIndexChanged="ddlMCode_SelectedIndexChanged" AutoPostBack="true" />
                             </div>
-                            <asp:TextBox ID="tbRCodeE" runat="server" CssClass="form-control" placeholder="xxxx" MaxLength="4" Text='<%# Eval("RCode") %>' ValidationGroup="fromEdit" />
+                            <asp:TextBox ID="tbRCodeE" runat="server" CssClass="form-control" placeholder="xxxx" MaxLength="4" Text='<%# Eval("RCode") %>' ValidationGroup="formEdit" />
                         </div>
                     </div>
                     <label class="col-sm-2 control-label">Asset Type</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbAsName" runat="server" CssClass="form-control" placeholder="Asset Type" Enabled="false" Text='<%# Eval("AsName") %>' ValidationGroup="fromEdit" />
+                        <asp:TextBox ID="tbAsName" runat="server" CssClass="form-control" placeholder="Asset Type" Enabled="false" Text='<%# Eval("AsName") %>' ValidationGroup="formEdit" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Material Name</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbMName" runat="server" CssClass="form-control" placeholder="Material Name" MaxLength="250" Enabled="false" Text='<%# Eval("MName") %>' ValidationGroup="fromEdit" />
+                        <asp:TextBox ID="tbMName" runat="server" CssClass="form-control" placeholder="Material Name" MaxLength="250" Enabled="false" Text='<%# Eval("MName") %>' ValidationGroup="formEdit" />
                     </div>
                     <label class="col-sm-2 control-label">Material Desc.</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbMDesc" runat="server" CssClass="form-control" placeholder="Material Description" MaxLength="500" Enabled="false" Text='<%# Eval("MDesc") %>' ValidationGroup="fromEdit" />
+                        <asp:TextBox ID="tbMDesc" runat="server" CssClass="form-control" placeholder="Material Description" MaxLength="500" Enabled="false" Text='<%# Eval("MDesc") %>' ValidationGroup="formEdit" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Kind</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbKName" runat="server" CssClass="form-control" placeholder="Kind" Enabled="false" Text='<%# Eval("KName") %>' ValidationGroup="fromEdit" />
+                        <asp:TextBox ID="tbKName" runat="server" CssClass="form-control" placeholder="Kind" Enabled="false" Text='<%# Eval("KName") %>' ValidationGroup="formEdit" />
                     </div>
                     <label class="col-sm-2 control-label">Rental/Day</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbRUD" runat="server" CssClass="form-control" placeholder="Rental per Day" MaxLength="10" Enabled="false" Text='<%# Eval("RUD") %>' ValidationGroup="fromEdit" />
+                        <asp:TextBox ID="tbRUD" runat="server" CssClass="form-control" placeholder="Rental per Day" MaxLength="10" Enabled="false" Text='<%# Eval("RUD") %>' ValidationGroup="formEdit" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Serial No.</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbSerialNoE" runat="server" CssClass="form-control" placeholder="Serial No." MaxLength="100" Text='<%# Eval("SerialNo") %>' ValidationGroup="fromEdit" />
+                        <asp:TextBox ID="tbSerialNoE" runat="server" CssClass="form-control" placeholder="Serial No." MaxLength="100" Text='<%# Eval("SerialNo") %>' ValidationGroup="formEdit" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Purchase Date</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbPurDateE" runat="server" CssClass="form-control datepicker" placeholder="Purchase Date" Text='<%# Eval("PurDate") %>' ValidationGroup="fromEdit" />
+                        <asp:TextBox ID="tbPurDateE" runat="server" CssClass="form-control datepicker" placeholder="Purchase Date" Text='<%# Eval("PurDate") %>' ValidationGroup="formEdit" />
                     </div>
                     <label class="col-sm-2 control-label">Purchase From</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbPurFromE" runat="server" CssClass="form-control" placeholder="Purchase From" MaxLength="250" Text='<%# Eval("PurFrom") %>' ValidationGroup="fromEdit" />
+                        <asp:TextBox ID="tbPurFromE" runat="server" CssClass="form-control" placeholder="Purchase From" MaxLength="250" Text='<%# Eval("PurFrom") %>' ValidationGroup="formEdit" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Quantity</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbQuantityE" runat="server" CssClass="form-control" placeholder="Quantity" MaxLength="10" Text='<%# Eval("Quantity") %>' ValidationGroup="fromEdit" />
+                        <asp:TextBox ID="tbQuantityE" runat="server" CssClass="form-control" placeholder="Quantity" MaxLength="10" Text='<%# Eval("Quantity") %>' ValidationGroup="formEdit" />
                     </div>
                     <label class="col-sm-2 control-label">Voucher No.</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbVoucherNoE" runat="server" CssClass="form-control" placeholder="Voucher No." MaxLength="50" Text='<%# Eval("VoucherNo") %>' ValidationGroup="fromEdit" />
+                        <asp:TextBox ID="tbVoucherNoE" runat="server" CssClass="form-control" placeholder="Voucher No." MaxLength="50" Text='<%# Eval("VoucherNo") %>' ValidationGroup="formEdit" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Unit Price</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbUnitPriceE" runat="server" CssClass="form-control" placeholder="Unit Price" MaxLength="50" Text='<%# Eval("UnitPrice") %>' ValidationGroup="fromEdit" />
+                        <asp:TextBox ID="tbUnitPriceE" runat="server" CssClass="form-control" placeholder="Unit Price" MaxLength="50" Text='<%# Eval("UnitPrice") %>' ValidationGroup="formEdit" />
                     </div>
                     <label class="col-sm-2 control-label">Amount(Baht)</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbAmountE" runat="server" CssClass="form-control" placeholder="Amount(Baht)" MaxLength="50" Text='<%# Eval("Amount") %>' ValidationGroup="fromEdit" />
+                        <asp:TextBox ID="tbAmountE" runat="server" CssClass="form-control" placeholder="Amount(Baht)" MaxLength="50" Text='<%# Eval("Amount") %>' ValidationGroup="formEdit" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -254,7 +257,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">สถานะ</label>
                     <div class="col-sm-3">
-                        <asp:DropDownList ID="ddlRegStatusE" runat="server" CssClass="form-control" SelectedValue='<%# Eval("RegStatus") %>' ValidationGroup="fromEdit">
+                        <asp:DropDownList ID="ddlRegStatusE" runat="server" CssClass="form-control" SelectedValue='<%# Eval("RegStatus") %>' ValidationGroup="formEdit">
                             <asp:ListItem Value="1" Text="ใช้งาน" />
                             <asp:ListItem Value="0" Text="ไม่ใช้งาน" />
                         </asp:DropDownList>
@@ -263,8 +266,8 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <asp:LinkButton ID="lbInsert" CssClass="btn btn-success" runat="server" data-original-title="บันทึก" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdUpdate" CommandArgument="0" Text="บันทึก" ValidationGroup="fromEdit"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></asp:LinkButton>
-                        <asp:LinkButton ID="lbCancel" CssClass="btn btn-danger" runat="server" data-original-title="ยกเลิก" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdCancel" Text="ยกเลิก" ValidationGroup="fromEdit"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></asp:LinkButton>
+                        <asp:LinkButton ID="lbInsert" CssClass="btn btn-success" runat="server" data-original-title="บันทึก" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdUpdate" CommandArgument="0" Text="บันทึก" ValidationGroup="formEdit"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></asp:LinkButton>
+                        <asp:LinkButton ID="lbCancel" CssClass="btn btn-danger" runat="server" data-original-title="ยกเลิก" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdCancel" Text="ยกเลิก" ValidationGroup="formEdit"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></asp:LinkButton>
                     </div>
                 </div>
             </div>

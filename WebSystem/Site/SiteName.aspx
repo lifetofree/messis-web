@@ -6,8 +6,21 @@
 <asp:Content ID="SiteNameContent" ContentPlaceHolderID="ContentMain" runat="Server">
     <script src='<%=ResolveUrl("~/Scripts/bootstrap-datepicker.js")%>'></script>
 
-    <div class="form-group">
-        <asp:LinkButton ID="lbAddSite" CssClass="btn btn-primary" runat="server" data-original-title="เพิ่มรายการ" data-toggle="tooltip" OnCommand="btnCommand" CommandName="cmdAddSite"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></asp:LinkButton>
+    <div id="divAction" runat="server" class="container-fluid">
+        <div class="row">
+            <div class="col-sm-8 form-group">
+                <asp:LinkButton ID="lbAddSite" CssClass="btn btn-primary" runat="server" data-original-title="เพิ่มรายการ" data-toggle="tooltip" OnCommand="btnCommand" CommandName="cmdAddSite"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></asp:LinkButton>
+            </div>
+            <div class="col-sm-4 form-group pull-right">
+                <div class="input-group">
+                    <asp:TextBox ID="tbSearch" runat="server" CssClass="form-control pull-right" PlaceHolder="กรอก Project ที่ต้องการค้นหา" ValidationGroup="formSearch"></asp:TextBox>
+                    <span class="input-group-btn">
+                        <asp:LinkButton ID="lbSearch" CssClass="btn btn-info" runat="server" data-original-title="ค้นหา" data-toggle="tooltip" OnCommand="btnCommand" CommandName="cmdSearchSite"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></asp:LinkButton>
+                        <asp:LinkButton ID="lbReset" CssClass="btn btn-default" runat="server" data-original-title="รีเซ็ต" data-toggle="tooltip" OnCommand="btnCommand" CommandName="cmdSearchReset"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></asp:LinkButton>
+                    </span>
+                </div>
+            </div>
+        </div>
     </div>
 
     <asp:GridView ID="gvSiteList" runat="server" CssClass="table table-bordered" AutoGenerateColumns="false" AllowPaging="true" PageSize="10" OnPageIndexChanging="gvPageIndexChanging" OnRowCommand="gvRowCommand">
@@ -94,7 +107,7 @@
                         <asp:TextBox ID="tbStaffName" runat="server" CssClass="form-control" placeholder="Admin. Staff" MaxLength="500" ValidationGroup="formInsert" />
                     </div>
                 </div>
-                <div class="form-group" style="display:none;">
+                <div class="form-group" style="display: none;">
                     <label class="col-sm-2 control-label">Location</label>
                     <div class="col-sm-8">
                         <asp:TextBox ID="tbSiteLocation" runat="server" CssClass="form-control" placeholder="Location" MaxLength="1000" ValidationGroup="formInsert" />
@@ -143,7 +156,7 @@
                         <asp:TextBox ID="tbStaffNameE" runat="server" CssClass="form-control" placeholder="Admin. Staff" MaxLength="500" Text='<%# Eval("StaffName") %>' ValidationGroup="formEdit" />
                     </div>
                 </div>
-                <div class="form-group" style="display:none;">
+                <div class="form-group" style="display: none;">
                     <label class="col-sm-2 control-label">Location</label>
                     <div class="col-sm-8">
                         <asp:TextBox ID="tbSiteLocationE" runat="server" CssClass="form-control" placeholder="Location" MaxLength="1000" Text='<%# Eval("SiteLocation") %>' ValidationGroup="formEdit" />

@@ -339,7 +339,7 @@
                     <div class="col-sm-offset-2 col-sm-10">
                         <%--<asp:LinkButton ID="lbReturnItem" CssClass="btn btn-success" runat="server" data-original-title="รับคืน" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdReturnItem" Text="รับคืน" />--%>
                         <asp:LinkButton ID="lbCancel" CssClass="btn btn-info" runat="server" data-original-title="กลับ" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdReset" Text="กลับ" ValidationGroup="formEdit"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></asp:LinkButton>
-                        <asp:LinkButton ID="lbPrint" CssClass="btn btn-primary" runat="server" data-original-title="Print" data-toggle="tooltip" ValidationGroup="formEdit" Visible='<%# Eval("RecStatus").ToString() == "100000" ? true : false %>' OnClientClick="CallPrint();"><%-- OnCommand="fvCommand" CommandName="cmdPrint" CommandArgument='<%# Eval("RecIDX") %>' --%><span class="glyphicon glyphicon-print" aria-hidden="true"></span></asp:LinkButton>
+                        <%--<asp:LinkButton ID="lbPrint" CssClass="btn btn-primary" runat="server" data-original-title="Print" data-toggle="tooltip" ValidationGroup="formEdit" Visible='<%# Eval("RecStatus").ToString() == "100000" ? true : false %>' OnClientClick="CallPrint();"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></asp:LinkButton>--%><%-- OnCommand="fvCommand" CommandName="cmdPrint" CommandArgument='<%# Eval("RecIDX") %>' --%>
                     </div>
                 </div>
             </div>

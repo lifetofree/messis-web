@@ -23,6 +23,8 @@ public partial class WebSystem_Site_SiteName : System.Web.UI.Page
             getGridData("site", dataMaster, 20);
             setFormData(fvSiteList, FormViewMode.Insert, null);
             fvSiteList.Visible = false;
+
+            ViewState["listData"] = null;
         }
     }
 
@@ -39,7 +41,7 @@ public partial class WebSystem_Site_SiteName : System.Web.UI.Page
                 break;
             case "cmdEdit":
                 fvSiteList.Visible = true;
-                lbAddSite.Visible = false;
+                divAction.Visible = false;
                 gvSiteList.Visible = !gvSiteList.Visible;
 
                 DetailSiteList siteDetail = new DetailSiteList();
@@ -162,7 +164,7 @@ public partial class WebSystem_Site_SiteName : System.Web.UI.Page
         }
 
         fvSiteList.Visible = !fvSiteList.Visible;
-        lbAddSite.Visible = !lbAddSite.Visible;
+        divAction.Visible = !divAction.Visible;
         gvSiteList.Visible = !gvSiteList.Visible;
     }
     #endregion form commnd
@@ -177,8 +179,31 @@ public partial class WebSystem_Site_SiteName : System.Web.UI.Page
         {
             case "cmdAddSite":
                 fvSiteList.Visible = true;
-                lbAddSite.Visible = false;
+                divAction.Visible = false;
                 gvSiteList.Visible = !gvSiteList.Visible;
+                break;
+            case "cmdSearchSite":
+                if (tbSearch.Text.Trim() != String.Empty)
+                {
+                    //set data
+                    DetailSiteList siteSearch = new DetailSiteList();
+                    siteSearch.SiteIDX = -1;
+                    siteSearch.ProjectName = tbSearch.Text.Trim();
+
+                    dataMaster.SiteList = new DetailSiteList[1];
+                    dataMaster.SiteList[0] = siteSearch;
+
+                    actionType = 23;
+                    //execute data
+                    dataMaster = serviceMaster.ActionDataMaster("site", dataMaster, actionType);
+                    ViewState["listData"] = dataMaster.SiteList;
+                    setGridData(gvSiteList, ViewState["listData"]);
+                }
+                break;
+            case "cmdSearchReset":
+                ViewState["listData"] = null;
+                tbSearch.Text = String.Empty;
+                getGridData("site", dataMaster, 20);
                 break;
         }
     }
@@ -187,8 +212,14 @@ public partial class WebSystem_Site_SiteName : System.Web.UI.Page
     #region bind data
     protected void getGridData(string dataName, DataMaster dataMaster, int actionType)
     {
-        dataMaster = serviceMaster.ActionDataMaster(dataName, dataMaster, actionType);
-        setGridData(gvSiteList, dataMaster.SiteList);
+        if (ViewState["listData"] == null)
+        {
+            dataMaster = serviceMaster.ActionDataMaster(dataName, dataMaster, actionType);
+            ViewState["listData"] = dataMaster.SiteList;
+            setGridData(gvSiteList, dataMaster.SiteList);
+        }
+
+        setGridData(gvSiteList, ViewState["listData"]);
     }
 
     protected void setGridData(GridView gvName, Object obj)

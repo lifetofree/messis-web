@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -25,15 +25,15 @@ public partial class WebSystem_Material_MaterialRecord : System.Web.UI.Page
     string recType = "";
     int recStatus = 0;
     string[] textShow = null;
-    string[] textOrder = { "Order No", "Order Date" };
-    string[] textDelivery = { "Delivery No", "Delivery Date" };
+    string[] textOrder = { "Delivery No", "Delivery Date" };
+    string[] textReception = { "Reception No", "Reception Date" };
     #endregion  initial function/data
 
     protected void Page_Load(object sender, EventArgs e)
     {
         recType = Page.RouteData.Values["recType"].ToString().ToLower();
         recStatus = (recType == "in") ? 800000 : 100000; //rec status
-        textShow = (recType == "in") ? textDelivery : textOrder; //text show
+        textShow = (recType == "in") ? textReception : textOrder; //text show
 
         if (!IsPostBack)
         {
@@ -253,7 +253,7 @@ public partial class WebSystem_Material_MaterialRecord : System.Web.UI.Page
             //    //get current data
             //    if (localString == "0")
             //    {
-            //        funcWeb.ShowAlert(this, "ดำเนินการเรียบร้อยแล้วค่ะ");
+            //        funcWeb.ShowAlert(this, "����Թ������º�������Ǥ��");
             //        //clear form
             //        setFormData(fvMaterialRecList, FormViewMode.Insert, null);
             //    }

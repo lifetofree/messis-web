@@ -1,4 +1,4 @@
-﻿<%@ Application Language="C#" %>
+<%@ Application Language="C#" %>
 <%@ Import Namespace="System.Web.Routing" %>
 
 <script runat="server">

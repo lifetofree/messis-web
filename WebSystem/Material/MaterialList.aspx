@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPage.master" AutoEventWireup="true" CodeFile="MaterialList.aspx.cs" Inherits="WebSystem_Material_MaterialList" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPage.master" AutoEventWireup="true" CodeFile="MaterialList.aspx.cs" Inherits="WebSystem_Material_MaterialList" %>
 
 <asp:Content ID="MaterialListHead" ContentPlaceHolderID="ContentHead" runat="Server">
 </asp:Content>

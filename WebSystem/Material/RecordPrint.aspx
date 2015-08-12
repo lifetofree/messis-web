@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="RecordPrint.aspx.cs" Inherits="WebSystem_Material_RecordPrint" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="RecordPrint.aspx.cs" Inherits="WebSystem_Material_RecordPrint" %>
 
 <!DOCTYPE html>
 

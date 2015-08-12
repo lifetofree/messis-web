@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPage.master" AutoEventWireup="true" CodeFile="MaterialType.aspx.cs" Inherits="WebSystem_Material_MaterialType" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPage.master" AutoEventWireup="true" CodeFile="MaterialType.aspx.cs" Inherits="WebSystem_Material_MaterialType" %>
 
 <asp:Content ID="MaterialTypeHead" ContentPlaceHolderID="ContentHead" runat="Server">
 </asp:Content>

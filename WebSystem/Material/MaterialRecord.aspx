@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPage.master" AutoEventWireup="true" CodeFile="MaterialRecord.aspx.cs" Inherits="WebSystem_Material_MaterialRecord" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPage.master" AutoEventWireup="true" CodeFile="MaterialRecord.aspx.cs" Inherits="WebSystem_Material_MaterialRecord" %>
 
 <asp:Content ID="MaterialRecordHead" ContentPlaceHolderID="ContentHead" runat="Server">
     <!-- http://plugins.krajee.com/file-input/demo#advanced-usage -->

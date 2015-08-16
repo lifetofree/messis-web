@@ -216,7 +216,6 @@ public partial class WebSystem_Site_SiteName : System.Web.UI.Page
         {
             dataMaster = serviceMaster.ActionDataMaster(dataName, dataMaster, actionType);
             ViewState["listData"] = dataMaster.SiteList;
-            setGridData(gvSiteList, dataMaster.SiteList);
         }
 
         setGridData(gvSiteList, ViewState["listData"]);

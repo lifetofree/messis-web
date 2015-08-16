@@ -8,8 +8,21 @@
     <script src='<%=ResolveUrl("~/Scripts/chosen.jquery.js")%>'></script>
     <script src='<%=ResolveUrl("~/Scripts/bootstrap-datepicker.js")%>'></script>
 
-    <div class="form-group">
-        <asp:LinkButton ID="lbAddMatReg" CssClass="btn btn-primary" runat="server" data-original-title="เพิ่มรายการ" data-toggle="tooltip" OnCommand="btnCommand" CommandName="cmdAddMatReg"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></asp:LinkButton>
+    <div id="divAction" runat="server" class="container-fluid">
+        <div class="row">
+            <div class="col-sm-8 form-group">
+                <asp:LinkButton ID="lbAddMatReg" CssClass="btn btn-primary" runat="server" data-original-title="เพิ่มรายการ" data-toggle="tooltip" OnCommand="btnCommand" CommandName="cmdAddMatReg"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></asp:LinkButton>
+            </div>
+            <div class="col-sm-4 form-group pull-right">
+                <div class="input-group">
+                    <asp:TextBox ID="tbSearch" runat="server" CssClass="form-control pull-right" PlaceHolder="กรอก Material Code/Name" ValidationGroup="formSearch"></asp:TextBox>
+                    <span class="input-group-btn">
+                        <asp:LinkButton ID="lbSearch" CssClass="btn btn-info" runat="server" data-original-title="ค้นหา" data-toggle="tooltip" OnCommand="btnCommand" CommandName="cmdSearchMatReg"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></asp:LinkButton>
+                        <asp:LinkButton ID="lbReset" CssClass="btn btn-default" runat="server" data-original-title="รีเซ็ต" data-toggle="tooltip" OnCommand="btnCommand" CommandName="cmdSearchReset"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></asp:LinkButton>
+                    </span>
+                </div>
+            </div>
+        </div>
     </div>
     <asp:GridView ID="gvMaterialRegList" runat="server" CssClass="table table-bordered" AutoGenerateColumns="false" AllowPaging="true" PageSize="10" OnPageIndexChanging="gvPageIndexChanging" OnRowCommand="gvRowCommand" OnRowDataBound="gvRowDataBound">
         <%-- table-striped table-hover--%>
@@ -93,9 +106,9 @@
                             <asp:TextBox ID="tbRCode" runat="server" CssClass="form-control" placeholder="xxxx" MaxLength="4" ValidationGroup="formInsert" />
                         </div>
                     </div>
-                    <label class="col-sm-2 control-label">Asset Type</label>
+                    <label class="col-sm-2 control-label">Material Type</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbAsName" runat="server" CssClass="form-control" placeholder="Asset Type" Enabled="false" ValidationGroup="formInsert" />
+                        <asp:TextBox ID="tbTypeName" runat="server" CssClass="form-control" placeholder="Material Type" Enabled="false" ValidationGroup="formInsert" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -117,6 +130,16 @@
                     <div class="col-sm-3">
                         <asp:TextBox ID="tbRUD" runat="server" CssClass="form-control" placeholder="Rental per Day" MaxLength="10" Enabled="false" ValidationGroup="formInsert" />
                     </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Asset Type</label>
+                  <div class="col-sm-3">
+                      <asp:TextBox ID="tbAsName" runat="server" CssClass="form-control" placeholder="Asset Type" Enabled="false" ValidationGroup="formInsert" />
+                  </div>
+                  <label class="col-sm-2 control-label">Unit</label>
+                  <div class="col-sm-3">
+                      <asp:TextBox ID="tbUnitName" runat="server" CssClass="form-control" placeholder="Unit" Enabled="false" ValidationGroup="formInsert" />
+                  </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Serial No.</label>
@@ -182,9 +205,9 @@
                             <asp:TextBox ID="tbRCodeE" runat="server" CssClass="form-control" placeholder="xxxx" MaxLength="4" Text='<%# Eval("RCode") %>' ValidationGroup="formEdit" />
                         </div>
                     </div>
-                    <label class="col-sm-2 control-label">Asset Type</label>
+                    <label class="col-sm-2 control-label">Material Type</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbAsName" runat="server" CssClass="form-control" placeholder="Asset Type" Enabled="false" Text='<%# Eval("AsName") %>' ValidationGroup="formEdit" />
+                        <asp:TextBox ID="tbTypeName" runat="server" CssClass="form-control" placeholder="Material Type" Enabled="false" Text='<%# Eval("TypeName") %>' ValidationGroup="formEdit" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -206,6 +229,16 @@
                     <div class="col-sm-3">
                         <asp:TextBox ID="tbRUD" runat="server" CssClass="form-control" placeholder="Rental per Day" MaxLength="10" Enabled="false" Text='<%# Eval("RUD") %>' ValidationGroup="formEdit" />
                     </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Asset Type</label>
+                  <div class="col-sm-3">
+                      <asp:TextBox ID="tbAsName" runat="server" CssClass="form-control" placeholder="Asset Type" Enabled="false" Text='<%# Eval("AsName") %>' ValidationGroup="formEdit" />
+                  </div>
+                  <label class="col-sm-2 control-label">Unit</label>
+                  <div class="col-sm-3">
+                      <asp:TextBox ID="tbUnitName" runat="server" CssClass="form-control" placeholder="Unit" Enabled="false" Text='<%# Eval("UnitName") %>' ValidationGroup="formEdit" />
+                  </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Serial No.</label>

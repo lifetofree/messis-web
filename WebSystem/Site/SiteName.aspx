@@ -13,7 +13,7 @@
             </div>
             <div class="col-sm-4 form-group pull-right">
                 <div class="input-group">
-                    <asp:TextBox ID="tbSearch" runat="server" CssClass="form-control pull-right" PlaceHolder="กรอก Project ที่ต้องการค้นหา" ValidationGroup="formSearch"></asp:TextBox>
+                    <asp:TextBox ID="tbSearch" runat="server" CssClass="form-control pull-right" PlaceHolder="กรอก SiteCode/Project" ValidationGroup="formSearch"></asp:TextBox>
                     <span class="input-group-btn">
                         <asp:LinkButton ID="lbSearch" CssClass="btn btn-info" runat="server" data-original-title="ค้นหา" data-toggle="tooltip" OnCommand="btnCommand" CommandName="cmdSearchSite"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></asp:LinkButton>
                         <asp:LinkButton ID="lbReset" CssClass="btn btn-default" runat="server" data-original-title="รีเซ็ต" data-toggle="tooltip" OnCommand="btnCommand" CommandName="cmdSearchReset"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></asp:LinkButton>

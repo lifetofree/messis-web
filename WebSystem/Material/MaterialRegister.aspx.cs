@@ -29,6 +29,8 @@ public partial class WebSystem_Material_MaterialRegister : System.Web.UI.Page
             getGridData("materialreg", dataMaster, 20);
             setFormData(fvMaterialRegList, FormViewMode.Insert, null);
             fvMaterialRegList.Visible = false;
+
+            ViewState["listData"] = null;
         }
     }
 
@@ -45,7 +47,7 @@ public partial class WebSystem_Material_MaterialRegister : System.Web.UI.Page
                 break;
             case "cmdEdit":
                 fvMaterialRegList.Visible = true;
-                lbAddMatReg.Visible = false;
+                divAction.Visible = false;
                 gvMaterialRegList.Visible = !gvMaterialRegList.Visible;
 
                 DetailMaterialRegisterList matRegister = new DetailMaterialRegisterList();
@@ -277,7 +279,7 @@ public partial class WebSystem_Material_MaterialRegister : System.Web.UI.Page
         }
 
         fvMaterialRegList.Visible = !fvMaterialRegList.Visible;
-        lbAddMatReg.Visible = !lbAddMatReg.Visible;
+        divAction.Visible = !divAction.Visible;
         gvMaterialRegList.Visible = !gvMaterialRegList.Visible;
     }
 
@@ -290,6 +292,8 @@ public partial class WebSystem_Material_MaterialRegister : System.Web.UI.Page
         TextBox tbMDesc = (TextBox)fvMaterialRegList.FindControl("tbMDesc");
         TextBox tbKName = (TextBox)fvMaterialRegList.FindControl("tbKName");
         TextBox tbRUD = (TextBox)fvMaterialRegList.FindControl("tbRUD");
+        TextBox tbTypeName = (TextBox)fvMaterialRegList.FindControl("tbTypeName");
+        TextBox tbUnitName = (TextBox)fvMaterialRegList.FindControl("tbUnitName");
 
         int mIDX = -1;
         if (ddlMCode != null)
@@ -312,7 +316,7 @@ public partial class WebSystem_Material_MaterialRegister : System.Web.UI.Page
             dLocal = serviceMaster.ActionDataMaster("materiallist", dLocal, 20);
             //get return code
             localString = dLocal.ReturnCode;
-            
+
             //get current data
             if (localString == "0")
             {
@@ -321,6 +325,8 @@ public partial class WebSystem_Material_MaterialRegister : System.Web.UI.Page
                 tbMDesc.Text = dLocal.MaterialList[0].MDesc;
                 tbKName.Text = dLocal.MaterialList[0].KName;
                 tbRUD.Text = dLocal.MaterialList[0].RUD.ToString();
+                tbTypeName.Text = dLocal.MaterialList[0].TypeName;
+                tbUnitName.Text = dLocal.MaterialList[0].UnitName;
             }
         }
         else //clear data
@@ -330,6 +336,8 @@ public partial class WebSystem_Material_MaterialRegister : System.Web.UI.Page
             tbMDesc.Text = String.Empty;
             tbKName.Text = String.Empty;
             tbRUD.Text = String.Empty;
+            tbTypeName.Text = String.Empty;
+            tbUnitName.Text = String.Empty;
         }
     }
     #endregion form command
@@ -344,8 +352,31 @@ public partial class WebSystem_Material_MaterialRegister : System.Web.UI.Page
         {
             case "cmdAddMatReg":
                 fvMaterialRegList.Visible = true;
-                lbAddMatReg.Visible = false;
+                divAction.Visible = false;
                 gvMaterialRegList.Visible = !gvMaterialRegList.Visible;
+                break;
+            case "cmdSearchMatReg":
+                if (tbSearch.Text.Trim() != String.Empty)
+                {
+                    //set data
+                    DetailMaterialRegisterList matSearch = new DetailMaterialRegisterList();
+                    matSearch.RegIDX = -1;
+                    matSearch.SerialNo = tbSearch.Text.Trim();
+
+                    dataMaster.MaterialRegisterList = new DetailMaterialRegisterList[1];
+                    dataMaster.MaterialRegisterList[0] = matSearch;
+
+                    actionType = 23;
+                    //execute data
+                    dataMaster = serviceMaster.ActionDataMaster("materialreg", dataMaster, actionType);
+                    ViewState["listData"] = dataMaster.MaterialRegisterList;
+                    setGridData(gvMaterialRegList, ViewState["listData"]);
+                }
+                break;
+            case "cmdSearchReset":
+                ViewState["listData"] = null;
+                tbSearch.Text = String.Empty;
+                getGridData("materialreg", dataMaster, 20);
                 break;
         }
     }
@@ -354,8 +385,13 @@ public partial class WebSystem_Material_MaterialRegister : System.Web.UI.Page
     #region bind data
     protected void getGridData(string dataName, DataMaster dataMaster, int actionType)
     {
-        dataMaster = serviceMaster.ActionDataMaster(dataName, dataMaster, actionType);
-        setGridData(gvMaterialRegList, dataMaster.MaterialRegisterList);
+        if (ViewState["listData"] == null)
+        {
+            dataMaster = serviceMaster.ActionDataMaster(dataName, dataMaster, actionType);
+            ViewState["listData"] = dataMaster.MaterialRegisterList;
+        }
+
+        setGridData(gvMaterialRegList, ViewState["listData"]);
     }
 
     protected void setGridData(GridView gvName, Object obj)

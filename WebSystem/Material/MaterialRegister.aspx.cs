@@ -36,7 +36,7 @@ public partial class WebSystem_Material_MaterialRegister : System.Web.UI.Page
 
     #region grid command
     protected void gvRowCommand(object sender, GridViewCommandEventArgs e)
-    {
+    {   
         string cmdName = e.CommandName.ToString();
         string cmdArg = e.CommandArgument.ToString();
 

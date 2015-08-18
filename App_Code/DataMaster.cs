@@ -235,7 +235,7 @@ public class DetailMaterialRegisterList
 
     [XmlElement("MCount")]
     public string MCount { get; set; }
-    
+
     [XmlElement("TypeName")]
     public string TypeName { get; set; }
     [XmlElement("UnitName")]
@@ -301,5 +301,10 @@ public class DetailMaterialRecordItemList
     public string MDesc { get; set; }
     [XmlElement("SerialNo")]
     public string SerialNo { get; set; }
+
+    [XmlElement("TypeName")]
+    public string TypeName { get; set; }
+    [XmlElement("UnitName")]
+    public string UnitName { get; set; }
 }
 #endregion

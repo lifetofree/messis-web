@@ -65,6 +65,18 @@
         }
     </style>--%>
 
+    <style type="text/css">
+        .printDoc table {
+            border:solid #333 !important;
+            border-width:1px 0 0 1px !important;
+            width: 6000px;
+        }
+        .printDoc th, .printDoc td {
+          border:solid #333 !important;
+          border-width:0 1px 1px 0 !important;
+        }
+    </style>
+
     <div class="form-group">
         <asp:LinkButton ID="lbAddRec" CssClass="btn btn-primary" runat="server" data-original-title="เพิ่มรายการ" data-toggle="tooltip" OnCommand="btnCommand" CommandName="cmdAddRec"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></asp:LinkButton>
     </div>
@@ -179,10 +191,17 @@
                     <div class="col-sm-3">
                         <asp:TextBox ID="tbQuantity" runat="server" CssClass="form-control" placeholder="Quantity" MaxLength="250" Enabled="true" />
                     </div>
-                    <label class="col-sm-2 control-label">Remark</label>
+                    <label class="col-sm-2 control-label">Unit</label>
                     <div class="col-sm-3">
-                        <asp:TextBox ID="tbRemark" runat="server" CssClass="form-control" placeholder="Remark" MaxLength="250" />
+                        <asp:TextBox ID="tbUnitName" runat="server" CssClass="form-control" placeholder="Unit" Enabled="false" />
                     </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Remark</label>
+                  <div class="col-sm-3">
+                      <asp:TextBox ID="tbRemark" runat="server" CssClass="form-control" placeholder="Remark" MaxLength="250" />
+                  </div>
+                  <label class="col-sm-5 control-label"></label>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
@@ -223,6 +242,11 @@
                                 <asp:TemplateField HeaderText="Quantity">
                                     <ItemTemplate>
                                         <asp:Label ID="lblQuantity" runat="server" Text='<%# Eval("RecQty") %>' />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Unit">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblUnitName" runat="server" Text='<%# Eval("UnitName") %>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Remark">
@@ -316,6 +340,11 @@
                                         <asp:Label ID="lblQuantity" runat="server" Text='<%# Eval("RecQty") %>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Unit">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblUnitName" runat="server" Text='<%# Eval("UnitName") %>' />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Remark">
                                     <ItemTemplate>
                                         <asp:Label ID="lblRemark" runat="server" Text='<%# Eval("RecRemark") %>' />
@@ -339,16 +368,18 @@
                     <div class="col-sm-offset-2 col-sm-10">
                         <%--<asp:LinkButton ID="lbReturnItem" CssClass="btn btn-success" runat="server" data-original-title="รับคืน" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdReturnItem" Text="รับคืน" />--%>
                         <asp:LinkButton ID="lbCancel" CssClass="btn btn-info" runat="server" data-original-title="กลับ" data-toggle="tooltip" OnCommand="fvCommand" CommandName="cmdReset" Text="กลับ" ValidationGroup="formEdit"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></asp:LinkButton>
-                        <%--<asp:LinkButton ID="lbPrint" CssClass="btn btn-primary" runat="server" data-original-title="Print" data-toggle="tooltip" ValidationGroup="formEdit" Visible='<%# Eval("RecStatus").ToString() == "100000" ? true : false %>' OnClientClick="CallPrint();"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></asp:LinkButton>--%><%-- OnCommand="fvCommand" CommandName="cmdPrint" CommandArgument='<%# Eval("RecIDX") %>' --%>
+                        <asp:LinkButton ID="lbPrint" CssClass="btn btn-primary" runat="server" data-original-title="Print" data-toggle="tooltip" ValidationGroup="formEdit" Visible='<%# Eval("RecStatus").ToString() == "100000" ? true : false %>' OnClientClick="CallPrint();"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></asp:LinkButton>
+                        <%--<asp:LinkButton ID="lbPrint" CssClass="btn btn-primary" runat="server" data-original-title="Print" data-toggle="tooltip" ValidationGroup="formEdit" Visible='<%# Eval("RecStatus").ToString() == "100000" ? true : false %>' OnClientClick="CallPrint();"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></asp:LinkButton>--%>
+                        <%-- OnCommand="fvCommand" CommandName="cmdPrint" CommandArgument='<%# Eval("RecIDX") %>' --%>
                     </div>
                 </div>
             </div>
         </EditItemTemplate>
     </asp:FormView>
-    <div style="display: none;">
+    <div><!-- style="display: none;" -->
         <asp:Panel runat="server" ID="pnlToPrint">
             <div class="container">
-                <%--<table style="width: 100%;" class="printDoc">
+                <!-- <table style="width: 100%;" class="printDoc">
                     <tbody>
                         <tr style="line-height: 30px;">
                             <td style="width: 80%; text-align: center;">THAI OBAYASHI CORP., LTD.</td>
@@ -373,9 +404,9 @@
                             <asp:Literal ID="litToSite" runat="server"></asp:Literal></td>
                         </tr>
                     </tbody>
-                </table>--%>
-                
-                <asp:GridView ID="gvPrint" runat="server" CssClass="table table-bordered" AutoGenerateColumns="false" Width="100%" OnRowDataBound="gvPrint_RowDataBound" HeaderStyle-Height="30" RowStyle-Height="30">
+                </table> -->
+
+                <asp:GridView ID="gvPrint" runat="server" CssClass="printDoc" AutoGenerateColumns="false" Width="100%" OnRowDataBound="gvPrint_RowDataBound" HeaderStyle-Height="30" RowStyle-Height="30">
                     <Columns>
                         <asp:TemplateField HeaderText="CODE">
                             <ItemTemplate>

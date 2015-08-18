@@ -97,10 +97,10 @@ public partial class WebSystem_Material_MaterialRecord : System.Web.UI.Page
                     gvPrint.DataBind();
                 }
 
-                //create row    
+                //create row
                 GridViewRow row = new GridViewRow(0, -1, DataControlRowType.Header, DataControlRowState.Normal);
 
-                ////spanned cell that will span the columns I don't want to give the additional header 
+                ////spanned cell that will span the columns I don't want to give the additional header
                 //TableCell left = new TableHeaderCell();
                 //left.ColumnSpan = 6;
                 //row.Cells.Add(left);
@@ -280,6 +280,7 @@ public partial class WebSystem_Material_MaterialRecord : System.Web.UI.Page
         TextBox tbMName = (TextBox)fvMaterialRecList.FindControl("tbMName");
         TextBox tbMDesc = (TextBox)fvMaterialRecList.FindControl("tbMDesc");
         TextBox tbQuantity = (TextBox)fvMaterialRecList.FindControl("tbQuantity");
+        TextBox tbUnitName = (TextBox)fvMaterialRecList.FindControl("tbUnitName");
         TextBox tbRemark = (TextBox)fvMaterialRecList.FindControl("tbRemark");
         // TextBox tbKName = (TextBox)fvMaterialRecList.FindControl("tbKName");
         // TextBox tbRUD = (TextBox)fvMaterialRecList.FindControl("tbRUD");
@@ -317,6 +318,7 @@ public partial class WebSystem_Material_MaterialRecord : System.Web.UI.Page
                 tbMName.Text = dLocal.MaterialRegisterList[0].MName;
                 tbMDesc.Text = dLocal.MaterialRegisterList[0].MDesc;
                 tbQuantity.Text = dLocal.MaterialRegisterList[0].Quantity.ToString();
+                tbUnitName.Text = dLocal.MaterialRegisterList[0].UnitName.ToString();
                 tbRemark.Text = String.Empty;
                 // tbKName.Text = dLocal.MaterialList[0].KName;
                 // tbRUD.Text = dLocal.MaterialList[0].RUD.ToString();
@@ -332,6 +334,7 @@ public partial class WebSystem_Material_MaterialRecord : System.Web.UI.Page
             tbMName.Text = String.Empty;
             tbMDesc.Text = String.Empty;
             tbQuantity.Text = String.Empty;
+            tbUnitName.Text = String.Empty;
             tbRemark.Text = String.Empty;
             // tbKName.Text = String.Empty;
             // tbRUD.Text = String.Empty;
@@ -358,6 +361,7 @@ public partial class WebSystem_Material_MaterialRecord : System.Web.UI.Page
                 TextBox tbMName = (TextBox)fvMaterialRecList.FindControl("tbMName");
                 TextBox tbMDesc = (TextBox)fvMaterialRecList.FindControl("tbMDesc");
                 TextBox tbQuantity = (TextBox)fvMaterialRecList.FindControl("tbQuantity");
+                TextBox tbUnitName = (TextBox)fvMaterialRecList.FindControl("tbUnitName");
                 TextBox tbRemark = (TextBox)fvMaterialRecList.FindControl("tbRemark");
                 Label lblFMCode = (Label)fvMaterialRecList.FindControl("lblFMCode");
                 Label lblSerialNo = (Label)fvMaterialRecList.FindControl("lblSerialNo");
@@ -369,6 +373,7 @@ public partial class WebSystem_Material_MaterialRecord : System.Web.UI.Page
                 itemLists.MName = tbMName.Text;
                 itemLists.MDesc = tbMDesc.Text;
                 itemLists.RecQty = int.Parse(tbQuantity.Text);
+                itemLists.UnitName = tbUnitName.Text;
                 itemLists.RecRemark = tbRemark.Text;
                 itemLists.CMCode = lblFMCode.Text;
                 itemLists.SerialNo = lblSerialNo.Text;
